@@ -1,10 +1,7 @@
 # tool macros
 CC ?= cc
-CXX ?= # FILL: the compiler
 CFLAGS := -Wall -Werror -Wextra
-CXXFLAGS := # FILL: compile flags
 DBGFLAGS := -g
-COBJFLAGS := $(CFLAGS) -c
 
 # path macros
 BIN_PATH := bin
@@ -68,6 +65,6 @@ clean:
 	@rm -f $(CLEAN_LIST)
 
 .PHONY: distclean
-distclean:
+fclean:
 	@echo CLEAN $(DISTCLEAN_LIST)
 	@rm -f $(DISTCLEAN_LIST)
