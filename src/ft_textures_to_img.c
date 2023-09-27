@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures.c                                         :+:      :+:    :+:   */
+/*   ft_textures_to_img.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 20:43:03 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/09/25 21:25:46 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/09/25 20:52:45 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/09/26 19:26:22 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <../include/so_long.h>
 #include <../lib/MLX42/include/MLX42/MLX42.h>
 
-mlx_texture_t *load_textures(const char *path)
-{
-	mlx_texture_t *texture;
 
-	texture = mlx_load_png("./textures/insta.png");
-	if (!texture)
+mlx_image_t*	ft_texture_to_img(mlx_t* mlx, mlx_texture_t *texture)
+{
+	mlx_image_t *img;
+
+	img = mlx_texture_to_image(mlx, texture);
+	if (!img)
 		error();
-	return (texture);
+	return (img);
 }

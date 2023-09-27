@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.c                                            :+:      :+:    :+:   */
+/*   ft_load_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 20:52:45 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/09/25 21:25:43 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/09/25 20:43:03 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/09/26 19:23:07 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <../include/so_long.h>
 #include <../lib/MLX42/include/MLX42/MLX42.h>
 
-
-mlx_image_t*	texture_to_img(mlx_t* mlx, mlx_texture_t *texture)
+mlx_texture_t *ft_load_textures(const char *path)
 {
-	//mlx_image_t *img;
+	mlx_texture_t *texture;
 
-	mlx_image_t* img = mlx_new_image(mlx, 512, 512);
-	// img = mlx_texture_to_image(mlx, texture);
-	if (!img)
+	texture = mlx_load_png(path);
+	if (!texture)
 		error();
-	return (img);
+	return (texture);
 }
