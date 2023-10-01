@@ -14,6 +14,8 @@
 # define SO_LONG_H
 
 # include "../lib/MLX42/include/MLX42/MLX42.h"
+# include "../lib/libft/inc/libft.h"
+# include <fcntl.h>
 
 typedef struct s_data {
 	mlx_t			*mlx;

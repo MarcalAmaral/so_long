@@ -6,11 +6,11 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 20:02:10 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/09/30 22:26:25 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/10/01 01:48:20 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/libft.h"
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {

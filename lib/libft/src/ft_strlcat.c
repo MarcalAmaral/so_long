@@ -6,11 +6,11 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 22:45:39 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/09/30 22:26:36 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/10/01 01:55:54 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/libft.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {

@@ -28,7 +28,7 @@ $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)
 
 clean:
-	rm -rf $(OBJ)/*.o
+	rm -rf $(OBJ_PATH)/*.o
 
 fclean: clean
 	rm -rf *$(NAME)

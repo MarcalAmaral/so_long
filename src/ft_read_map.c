@@ -6,14 +6,11 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 19:03:24 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/09/30 21:44:10 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/10/01 00:18:58 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <../include/so_long.h>
-#include <../lib/MLX42/include/MLX42/MLX42.h>
-#include "../../include/libft.h"
-#include <fcntl.h>
+#include "../include/so_long.h"
 
 char **ft_read_map(const char *path_map)
 {
@@ -21,12 +18,10 @@ char **ft_read_map(const char *path_map)
 	char	*all_line;
 	char	**map;
 	int		fd;
-	int		i;
 
 	fd = open(path_map, O_RDONLY);
 	if (!fd)
-		error ();
-	i = -1;
+		ft_printf("Deu merda");
 	all_line = (char *) ft_calloc(1, sizeof(char));
 	while (1)
 	{

@@ -6,12 +6,11 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 20:52:45 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/09/30 21:44:17 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/10/01 00:00:39 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-#include "../lib/MLX42/include/MLX42/MLX42.h"
 
 mlx_image_t*	ft_texture_to_img(mlx_t* mlx, mlx_texture_t *texture)
 {

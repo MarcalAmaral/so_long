@@ -20,18 +20,12 @@
 #define WIDTH 1000
 #define HEIGHT 1000
 
-static void error(void)
-{
-	puts(mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
-}
-
 int	main(int argc, char *argv[])
 {
 	char **map;
 
 	map = ft_read_map(argv[1]);
-	return (0);
+	return (argc);
 }
 
 /* int32_t	main(void)
