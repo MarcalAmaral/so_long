@@ -10,6 +10,8 @@ SRC_PATH := src
 DBG_PATH := debug
 PATH_MLX = ./lib/MLX42
 PATH_MLXLIB = $(PATH_MLX)/build/libmlx42.a -ldl -lm -lpthread -lglfw
+PATH_LIBFT = ./lib/libft
+PATH_LIBFTLIB = $(PATH_LIBFT)/libft.a
 
 # compile macros
 TARGET_NAME := so_long # FILL: target name
@@ -19,7 +21,7 @@ endif
 TARGET := $(BIN_PATH)/$(TARGET_NAME)
 TARGET_DEBUG := $(DBG_PATH)/$(TARGET_NAME)
 
-# src files & obj files
+# src files & obj files	
 SRC := $(foreach x, $(SRC_PATH), $(wildcard $(addprefix $(x)/*,.c*)))
 OBJ := $(addprefix $(OBJ_PATH)/, $(addsuffix .o, $(notdir $(basename $(SRC)))))
 OBJ_DEBUG := $(addprefix $(DBG_PATH)/, $(addsuffix .o, $(notdir $(basename $(SRC)))))
@@ -36,22 +38,26 @@ CLEAN_LIST := $(TARGET) \
 default: makedir all
 
 # non-phony targets
-$(TARGET): $(OBJ)
-	$(CC) -o $@ $(OBJ) $(CFLAGS) $(PATH_MLXLIB)
+$(TARGET): $(LIBFT) $(OBJ)
+	$(CC) -o $@ $(OBJ) $(CFLAGS) $(PATH_MLXLIB) $(PATH_LIBFTLIB)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c*
 	$(CC) $(INCLUDE) -c $< -o $@
 
 $(DBG_PATH)/%.o: $(SRC_PATH)/%.c*
-	$(CC) $(CFLAGS) $(DBGFLAGS) -o $@ $<
+	$(CC) $(CFLAGS) $(DBGFLAGS) -c -o $@ $<
 
-$(TARGET_DEBUG): $(OBJ_DEBUG)
-	$(CC) $(CFLAGS) $(DBGFLAGS) $(OBJ_DEBUG) -o $@
+$(TARGET_DEBUG): $(LIBFT) $(OBJ_DEBUG)
+	$(CC) $(CFLAGS) $(DBGFLAGS) $(OBJ_DEBUG) $(PATH_MLXLIB) $(PATH_LIBFTLIB) -o $@
+
+$(LIBFT):
+	make -C $(PATH_LIB)
 
 # phony rules
 .PHONY: makedir
 makedir:
 	@mkdir -p $(BIN_PATH) $(OBJ_PATH) $(DBG_PATH)
+
 
 .PHONY: all
 all: $(TARGET)

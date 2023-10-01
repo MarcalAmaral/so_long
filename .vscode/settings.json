@@ -1,6 +1,10 @@
 {
 	"files.associations": {
 		"mlx42.h": "c",
-		"so_long.h": "c"
+		"so_long.h": "c",
+		"stddef.h": "c",
+		"stdarg.h": "c",
+		"libft.h": "c",
+		"sstream": "c"
 	}
 }

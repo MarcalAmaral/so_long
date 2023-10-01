@@ -13,7 +13,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <../lib/MLX42/include/MLX42/MLX42.h>
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 
 typedef struct s_data {
 	mlx_t			*mlx;
@@ -23,5 +23,6 @@ typedef struct s_data {
 
 mlx_texture_t	*ft_load_textures(const char *path);
 mlx_image_t		*ft_texture_to_img(mlx_t* mlx, mlx_texture_t *texture);
+char			**ft_read_map(const char *path_map);
 
 #endif
