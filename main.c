@@ -6,7 +6,7 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 00:55:38 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/10/01 02:11:23 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/10/02 20:26:14 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return ((void *) ptr);
 }
 
-char	**ft_split(const char *s, char c)
+const char	**ft_split(const char *s, char c)
 {
 	char	**ret;
 	size_t	i;
@@ -75,7 +75,7 @@ char	**ft_split(const char *s, char c)
 		}
 		i++;
 	}
-	return (ret);
+	return ((const char *) ret);
 }
 
 static char	*substr_split(const char *s, int start, int end)

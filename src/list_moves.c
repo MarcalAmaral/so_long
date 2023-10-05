@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_read_map.c                                      :+:      :+:    :+:   */
+/*   list_moves.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 19:03:24 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/10/03 21:54:08 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/10/04 21:13:26 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/10/04 22:14:22 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-const char **ft_read_map(const char *path_map)
-{
-	char 	*line;
-	char	*all_line;
-	int		fd;
+// t_map	*ft_newnode(char content)
+// {
+// 	t_map *node;
 
-	fd = open(path_map, O_RDONLY);
-	if (!fd)
-		ft_printf("Deu merda");
-	all_line = (char *) ft_calloc(1, sizeof(char));
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-		{
-			free(line);
-			break;
-		}
-		all_line = ft_strjoin(all_line, line);
-	}
-	map = ft_split(all_line, '\n');
-	free(all_line);
-	close(fd);
-	return ((const char **) map);
-}
+// 	node = ft_calloc(1, sizeof(t_map));
+// 	return (node);
+// }
+
+// t_map	*ft_append_next(t_map node, char content);
+
+// t_map	*ft_append_next(t_map node, char content);

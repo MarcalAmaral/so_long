@@ -21,10 +21,20 @@ typedef struct s_data {
 	mlx_t			*mlx;
 	mlx_texture_t	*texture;
 	mlx_image_t		*img;
+	const char		**map;
 } t_data;
+
+typedef struct s_map {
+	char			byte;
+	char			dup_byte;
+	struct s_map	*next;
+	struct s_map	*prev;
+	struct s_map	*up;
+	struct s_map	*down;
+}	t_map;
 
 mlx_texture_t	*ft_load_textures(const char *path);
 mlx_image_t		*ft_texture_to_img(mlx_t* mlx, mlx_texture_t *texture);
-char			**ft_read_map(const char *path_map);
+const char		**ft_read_map(const char *path_map);
 
 #endif

@@ -10,48 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <memory.h>
 #include "../include/so_long.h"
-#include "../lib/MLX42/include/MLX42/MLX42.h"
+#include <stdio.h>
 
 #define WIDTH 1000
 #define HEIGHT 1000
 
-int	main(int argc, char *argv[])
-{
-	char **map;
 
-	map = ft_read_map(argv[1]);
-	return (argc);
+t_map	ft_newnode_map(char content)
+{
+	t_map node;
+
+	node.byte = content;
+	node.dup_byte = content;
+	return (node);
 }
 
-/* int32_t	main(void)
+void	ft_append_next_map(t_map *node, char content)
 {
-	// Start mlx
-	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "Test", true);
-	if (!mlx)
-        error();
+	t_map	new_node;
 
-	// Create a new image
-	mlx_image_t* img = mlx_new_image(mlx, 512, 512);
-	if (!img)
-		error();
+	new_node = ft_newnode_map(content);
+	new_node.prev = node;
+	node->next = &new_node;
+}
 
-	// Set every pixel to white
-	memset(img->pixels, 255, img->width * img->height * sizeof(int32_t));
+int	main(void)
+{
+	t_map	map;
+	t_map	head;
+	char	str[] = "lastline";;
+	size_t	i = 0;
 
-	// Display an instance of the image
-	if (mlx_image_to_window(mlx, img, 0, 0) < 0)
-        error();
-
-	mlx_loop_hook(mlx, ft_hook, mlx);
-	mlx_loop(mlx);
-
-	// Optional, terminate will clean up any leftovers, this is just to demonstrate.
-	mlx_delete_image(mlx, img);
-	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
-} */
+	head = ft_newnode_map('c');
+	map = head;
+	while (str[i])
+		ft_append_next_map(&map, str[i]);
+	while (head.next != NULL)
+		printf("%c", head.byte);
+	return (0);
+}
