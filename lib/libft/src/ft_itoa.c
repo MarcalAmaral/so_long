@@ -6,11 +6,11 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 16:13:37 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/09/30 22:25:06 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/10/10 21:00:46 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/libft.h"
 
 static size_t	intlen(int n);
 

@@ -6,11 +6,11 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 20:50:42 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/09/30 22:25:12 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/10/10 21:00:57 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/libft.h"
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {

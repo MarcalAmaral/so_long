@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstlastmap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 23:21:50 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/10/10 21:02:31 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/10/12 20:38:11 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/10/12 20:41:08 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "../../include/so_long.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t	len)
+t_map	*ft_lstlastmap(t_map *map)
 {
-	size_t	little_len;
-
-	little_len = ft_strlen(little);
-	if (little_len < 1)
-		return ((char *)big);
-	if (len == 0)
-		return (NULL);
-	while (*big && len-- >= little_len)
+	while (map)
 	{
-		if (ft_strncmp(big, little, little_len) == 0)
-			return ((char *) big);
-		big++;
+		if (!map->next)
+			return(map);
+		map = map->next;
 	}
-	return (NULL);
+	return (map);
 }

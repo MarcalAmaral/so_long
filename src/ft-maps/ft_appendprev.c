@@ -1,31 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_appendprev.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 23:21:50 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/10/10 21:02:31 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/10/12 20:39:20 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/10/12 20:40:41 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "../../include/so_long.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t	len)
+void	ft_appendprev(t_map **head)
 {
-	size_t	little_len;
+	t_map		*temp;
+	t_map		*node;
+	int			i;
+	int			j;
 
-	little_len = ft_strlen(little);
-	if (little_len < 1)
-		return ((char *)big);
-	if (len == 0)
-		return (NULL);
-	while (*big && len-- >= little_len)
+	temp = *head;
+	i = 0;
+	if (i == 0)
 	{
-		if (ft_strncmp(big, little, little_len) == 0)
-			return ((char *) big);
-		big++;
+		temp->prev = NULL;
+		i++;
 	}
-	return (NULL);
+	temp = temp->next;
+	j = -1;
+	while (temp)
+	{
+		node = *head;
+		while (j++, j <= i - 1)
+			if	(i != 1)
+				node = node->next;
+		j = 0;
+		temp->prev = node;
+		i++;
+		temp = temp->next;
+	}
+	return ;
 }

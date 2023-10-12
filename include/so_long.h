@@ -25,8 +25,8 @@ typedef struct s_data {
 } t_data;
 
 typedef struct s_map {
-	char			byte;
-	char			dup_byte;
+	char			content;
+	char			dup_content;
 	struct s_map	*next;
 	struct s_map	*prev;
 	struct s_map	*up;
@@ -36,5 +36,9 @@ typedef struct s_map {
 mlx_texture_t	*ft_load_textures(const char *path);
 mlx_image_t		*ft_texture_to_img(mlx_t* mlx, mlx_texture_t *texture);
 const char		**ft_read_map(const char *path_map);
+t_map			*ft_lstlastmap(t_map *map);
+t_map			*ft_newnode_map(char content);
+void			ft_appendnext(t_map **head, t_map *node);
+void			ft_appendprev(t_map **head);
 
 #endif

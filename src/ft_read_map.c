@@ -6,11 +6,11 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 19:03:24 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/10/03 21:54:08 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/10/10 21:06:07 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+/* #include "../include/so_long.h"
 
 const char **ft_read_map(const char *path_map)
 {
@@ -37,3 +37,4 @@ const char **ft_read_map(const char *path_map)
 	close(fd);
 	return ((const char **) map);
 }
+ */

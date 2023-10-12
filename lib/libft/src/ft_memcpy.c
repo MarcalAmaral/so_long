@@ -6,11 +6,11 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:46:06 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/09/30 22:25:29 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/10/10 21:01:11 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/libft.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {

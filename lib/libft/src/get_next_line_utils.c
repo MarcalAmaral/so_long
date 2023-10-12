@@ -6,11 +6,11 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 13:46:29 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/09/30 22:27:07 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/10/10 21:28:07 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/libft.h"
 
 t_byte	*ft_newnode(char content)
 {

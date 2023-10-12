@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_newnode_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 23:21:50 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/10/10 21:02:31 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/10/12 15:24:27 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/10/12 20:38:48 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "../../include/so_long.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t	len)
+t_map	*ft_newnode_map(char content)
 {
-	size_t	little_len;
+	t_map	*new_node;
 
-	little_len = ft_strlen(little);
-	if (little_len < 1)
-		return ((char *)big);
-	if (len == 0)
-		return (NULL);
-	while (*big && len-- >= little_len)
-	{
-		if (ft_strncmp(big, little, little_len) == 0)
-			return ((char *) big);
-		big++;
-	}
-	return (NULL);
+	new_node = (t_map *) ft_calloc (1, sizeof(t_map));
+	new_node->content = content;
+	new_node->dup_content = content;
+	new_node->next = NULL;
+	new_node->prev = NULL;
+	new_node->up = NULL;
+	new_node->down = NULL;
+	return (new_node);
 }

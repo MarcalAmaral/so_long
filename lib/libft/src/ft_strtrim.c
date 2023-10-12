@@ -6,11 +6,11 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:39:05 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/09/30 22:26:58 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/10/10 21:02:39 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/libft.h"
 
 char	*ft_strtrim(char const *s1, char const *set)
 {

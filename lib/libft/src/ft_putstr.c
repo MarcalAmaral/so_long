@@ -6,11 +6,11 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 21:45:52 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/09/30 22:26:10 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/10/10 21:02:24 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/libft.h"
 
 int	ft_putstr(const char *str)
 {
