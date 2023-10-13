@@ -33,6 +33,13 @@ t_map	**ft_newline(t_map **head, t_map *node)
 	return (&temp->down);
 }
 
+void	ft_appenddown(t_map **head)
+{
+	static int	i;
+
+	i = 0;
+}
+
 void	ft_readmap(t_map **map, int	fd)
 {
 	int		i;
