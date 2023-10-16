@@ -35,9 +35,9 @@ typedef struct s_map {
 
 mlx_texture_t	*ft_load_textures(const char *path);
 mlx_image_t		*ft_texture_to_img(mlx_t* mlx, mlx_texture_t *texture);
-const char		**ft_read_map(const char *path_map);
 t_map			*ft_lstlastmap(t_map *map);
 t_map			*ft_newnode_map(char content);
+void			ft_readmap(t_map **map, int	fd);
 void			ft_appendnext(t_map **head, t_map *node);
 void			ft_appendprev(t_map **head);
 
