@@ -121,6 +121,8 @@ void    ft_append_down_up(t_map **head, int *arr)
         node = temp->down;
         *head = node;
     }
+	if (!arr[0])
+		return ;
     while (y++ < arr[1])
     {
         node->up = temp;
@@ -179,11 +181,9 @@ void	ft_appendprev(t_map **head)
 
 void	ft_readmap(t_map **map, int	fd)
 {
-	int		i;
 	int		j;
 	char 	*line;
 
-	i = 0;
 	j = 0;
 	line = get_next_line(fd);
 	if (line)
@@ -195,17 +195,13 @@ void	ft_readmap(t_map **map, int	fd)
 				map = ft_newline(map, ft_newnode_map(line[j]));
 				j++;
 			}
-			if (line[j] == '\n' || line[j + 1] == '\0')
-			{
-				if (line[j] == '\n')
-				ft_appendprev(map);
+			if (line[j] == '\n' || line[j] == '\0')
 				break ;
-			}
 			ft_appendnext(map, ft_newnode_map(line[j]));
 			j++;
 		}
+		ft_appendprev(map);
 		free(line);
-		i++;
 		ft_readmap(map, fd);
 	}
 	return ;
@@ -214,91 +210,104 @@ void	ft_readmap(t_map **map, int	fd)
 int main(void)
 {
     t_map	**head;
+	t_map	**map;
     int		fd;
 	int		*arr;
 
     head = (t_map **) ft_calloc(1, sizeof(t_map **));
     fd = open("maps/map.ber", O_RDONLY);
 	ft_readmap(head, fd);
+	map = head;
 	arr = ft_mapsize(head);
 	ft_append_down_up(head, arr);
-	ft_print_map(head);
+	ft_print_map(map);
     return (0);
+}
+
+void	ft_printline_andprevline(t_map *node)
+{
+	t_map *node_prev;
+ 
+	while (node)
+	{
+		ft_printf("%c", node->content);
+		node = node->next;
+		if (node == NULL)
+			break ;
+		node_prev = node;
+	}
+	ft_printf("\n");
+	while (node_prev)
+	{
+		ft_printf("%c", node_prev->content);
+		node_prev = node_prev->prev;
+	}
+	ft_printf("\n");
+	return ;
 }
 
 void	ft_print_map(t_map **map)
 {
-	t_map	*p_next;
-	t_map	*p_prev;
-	t_map	*p_down;
-	t_map	*p_up;
-	t_map	*p_down1;
-	t_map	*p_down1_prev;
-	t_map	*p_down2;
-	t_map	*p_down2_prev;
+	t_map	*p_x1;
+	t_map	*p_x2;
+	t_map	*p_x3;
+	t_map	*p_x4;
+	t_map	*p_x5;
 
-	p_next = *map;
-	p_down1 = p_next->down;
-	p_down2 = p_down1->down;
-	while (p_next)
-	{
-		ft_printf("%c", p_next->content);
-		p_next = p_next->next;
-		if (p_next == NULL)
-			break ;
-		p_prev = p_next;
-	}
-	ft_printf("\n");
-	while (p_prev)
-	{
-		ft_printf("%c", p_prev->content);
-		p_prev = p_prev->prev;
-	}
-	ft_printf("\n");
-	while (p_down1)
-	{
-		ft_printf("%c", p_down1->content);
-		p_down1 = p_down1->next;
-		if (p_down1 == NULL)
-			break ;
-		p_down1_prev = p_down1;
-	}
-	ft_printf("\n");
-	while (p_down1_prev)
-	{
-		ft_printf("%c", p_down1_prev->content);
-		p_down1_prev = p_down1_prev->prev;
-	}
-	ft_printf("\n");
-	while (p_down2)
-	{
-		ft_printf("%c", p_down2->content);
-		p_down2 = p_down2->next;
-		if (p_down2 == NULL)
-			break ;
-		p_down2_prev = p_down2;
-	}
-	ft_printf("\n");
-	while (p_down2_prev)
-	{
-		ft_printf("%c", p_down2_prev->content);
-		p_down2_prev = p_down2_prev->prev;
-	}
-	ft_printf("\n");
-	p_down = *map;
-	while (p_down->down)
-	{
-		ft_printf("%c\n", p_down->content);
-		p_down = p_down->down;
-		if (p_down == NULL)
-			break ;
-		p_up = p_down;
-	}
-	ft_printf("\n");
-	while (p_up)
-	{
-		ft_printf("%c\n", p_up->content);
-		p_up = p_up->up;
-	}
-	return ;
+	p_x1 = *map;
+	p_x2 = p_x1->down;
+	p_x3 = p_x2->down;
+	p_x4 = p_x3->down;
+	p_x5 = p_x4->down;
+	ft_printline_andprevline(p_x1);
+	ft_printline_andprevline(p_x2);
+	ft_printline_andprevline(p_x3);
+	ft_printline_andprevline(p_x4);
+	ft_printline_andprevline(p_x5);
+	//while (p_down1)
+	//{
+	//	ft_printf("%c", p_down1->content);
+	//	p_down1 = p_down1->next;
+	//	if (p_down1 == NULL)
+	//		break ;
+	//	p_down1_prev = p_down1;
+	//}
+	//ft_printf("\n");
+	//while (p_down1_prev)
+	//{
+	//	ft_printf("%c", p_down1_prev->content);
+	//	p_down1_prev = p_down1_prev->prev;
+	//}
+	//ft_printf("\n");
+	//while (p_down2)
+	//{
+	//	ft_printf("%c", p_down2->content);
+	//	p_down2 = p_down2->next;
+	//	if (p_down2 == NULL)
+	//		break ;
+	//	p_down2_prev = p_down2;
+	//}
+	//ft_printf("\n");
+	//while (p_down2_prev)
+	//{
+	//	ft_printf("%c", p_down2_prev->content);
+	//	p_down2_prev = p_down2_prev->prev;
+	//}
+	//ft_printf("\n");
+	//p_down = *map;
+	//while (p_down->down)
+	//{
+	//	ft_printf("%c\n", p_down->content);
+	//	p_down = p_down->down;
+	//	if (p_down == NULL)
+	//		break ;
+	//	p_up = p_down;
+	//}
+	//ft_printf("\n");
+	//while (p_up)
+	//{
+	//	ft_printf("%c\n", p_up->content);
+	//	p_up = p_up->up;
+	//}
+	//return ;
 }
