@@ -13,6 +13,7 @@
 #include "../include/so_long.h"
 
 int		*ft_mapsize(t_map **map);
+void	ft_freemap(t_map **head);
 void	ft_append_down_up(t_map **head, int *map);
 void	ft_appendprev(t_map **head);
 void	ft_print_map(t_map **map);
@@ -20,6 +21,18 @@ void	ft_appendnext(t_map **head, t_map *node);
 t_map	**ft_newline(t_map **head, t_map *node);
 t_map	*ft_newnode_map(char content);
 t_map	*ft_lstlastmap(t_map *map);
+t_map	*ft_lstfirstmap(t_map *map);
+
+t_map	*ft_lstfirstmap(t_map *map)
+{
+	while (map)
+	{
+		if (!map->prev)
+			return(map);
+		map = map->prev;
+	}
+	return (map);
+}
 
 t_map	*ft_lstlastmap(t_map *map)
 {
@@ -69,7 +82,7 @@ int		*ft_mapsize(t_map **map)
 	t_map	*temp;
 	int		*arr;
 
-	arr = (int *) ft_calloc(1, sizeof(int *));
+	arr = (int *) ft_calloc(3, sizeof(int));
 	arr[1] = 0;
 	temp = *map;
 	while (arr[1]++, temp->next)
@@ -82,55 +95,31 @@ int		*ft_mapsize(t_map **map)
 	return (arr);
 }
 
-//void	ft_append_down_up(t_map **head, int *map)
-//{
-//	t_map	*temp;
-//	t_map	*node;
-//	t_map	*x;
-//	int		ops;
-//
-//	temp = *head;
-//	node = temp->down;
-//	ops = (map[0] - 1) * (map[1] - 1);
-//	while (node)
-//	{
-//		node->up = temp;
-//		node = node->down;
-//		temp = temp->down; 
-//	}
-//	node = temp->up;
-//	while (ops--)
-//	{
-//		x = node->up;
-//		if (node->next || temp->next == NULL)
-//			node
-//	}
-//	return ;
-//}
-
-void    ft_append_down_up(t_map **head, int *arr)
+void	ft_append_down_up(t_map **head, int *arr)
 {
-    t_map   *temp;
-    t_map   *node;
+    t_map   *up;
+    t_map   *down;
     int y;
 
     y = 0;
-    if (arr[0]--)
-    {
-        temp = *head;
-        node = temp->down;
-        *head = node;
-    }
-	if (!arr[0])
+	if (*head == NULL)
 		return ;
-    while (y++ < arr[1])
-    {
-        node->up = temp;
-        temp->down = node;
-        node = node->next;
-        temp = temp->next;
-    }
-    ft_append_down_up(head, arr);
+	if (arr[0]--)
+	{
+		up = *head;
+		down = up->down;
+	}
+	while (y++ < arr[1] && down)
+	{
+		down->up = up;
+		up->down = down;
+		if (down->next)
+			down = down->next;
+		up = up->next;
+	}
+	down = ft_lstfirstmap(down);
+    ft_append_down_up(&down, arr);
+	return ;
 }
 
 void	ft_appendnext(t_map **head, t_map *node)
@@ -209,18 +198,19 @@ void	ft_readmap(t_map **map, int	fd)
 
 int main(void)
 {
-    t_map	**head;
-	t_map	**map;
-    int		fd;
 	int		*arr;
+    t_map	**head;
+    int		fd;
 
     head = (t_map **) ft_calloc(1, sizeof(t_map **));
     fd = open("maps/map.ber", O_RDONLY);
 	ft_readmap(head, fd);
-	map = head;
 	arr = ft_mapsize(head);
 	ft_append_down_up(head, arr);
-	ft_print_map(map);
+	free(arr);
+//	ft_print_map(head);
+	ft_freemap(head);
+	free(head);
     return (0);
 }
 
@@ -246,24 +236,43 @@ void	ft_printline_andprevline(t_map *node)
 	return ;
 }
 
+void	ft_freemap(t_map **head)
+{
+	t_map	*temp;
+	t_map	*temp1;
+
+	if (!*head)
+		return ;
+	temp = *head;
+	*head = temp->down;
+	while (temp)
+	{
+		temp1 = temp;
+		temp = temp->next;
+		free(temp1);
+	}
+	ft_freemap(head);
+	return ;
+}
+
 void	ft_print_map(t_map **map)
 {
 	t_map	*p_x1;
-	t_map	*p_x2;
-	t_map	*p_x3;
-	t_map	*p_x4;
-	t_map	*p_x5;
-
+//	t_map	*p_x2;
+//	t_map	*p_x3;
+//	t_map	*p_x4;
+//	//t_map	*p_x5;
+//
 	p_x1 = *map;
-	p_x2 = p_x1->down;
-	p_x3 = p_x2->down;
-	p_x4 = p_x3->down;
-	p_x5 = p_x4->down;
+//	p_x2 = p_x1->down;
+//	p_x3 = p_x2->down;
+//	p_x4 = p_x3->down;
+//	//p_x5 = p_x4->down;
 	ft_printline_andprevline(p_x1);
-	ft_printline_andprevline(p_x2);
-	ft_printline_andprevline(p_x3);
-	ft_printline_andprevline(p_x4);
-	ft_printline_andprevline(p_x5);
+//	ft_printline_andprevline(p_x2);
+//	ft_printline_andprevline(p_x3);
+//	ft_printline_andprevline(p_x4);
+	//ft_printline_andprevline(p_x5);
 	//while (p_down1)
 	//{
 	//	ft_printf("%c", p_down1->content);

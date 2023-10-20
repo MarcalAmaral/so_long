@@ -88,7 +88,7 @@ int	main(void)
 void	ft_free(t_map **map)
 {
 	t_map	*temp;
-	t_map	*temp1;
+	t_map	*free;
 
 	temp = *map;
 	while (temp)
