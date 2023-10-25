@@ -36,16 +36,16 @@ typedef struct s_map {
 
 mlx_texture_t	*ft_load_textures(const char *path);
 mlx_image_t		*ft_texture_to_img(mlx_t* mlx, mlx_texture_t *texture);
-int				*ft_mapsize(t_map **map);
 t_map			*ft_newnode_map(char content);
-t_map			**ft_newline(t_map **head, t_map *node);
-t_map			*ft_lstfirstmap(t_map *map);
-t_map			*ft_lstlastmap(t_map *map);
+t_map			**ft_newline_map(t_map **head, t_map *node);
+t_map			*ft_lstfirst_map(t_map *map);
+t_map			*ft_lstlast_map(t_map *map);
 void			ft_readmap(t_map **map, int	fd);
-void			ft_freemap(t_map **head);
-void			ft_append_down_up(t_map **head, int *map);
-void			ft_append_prev(t_map **head);
-void			ft_append_next(t_map **head, t_map *node);
-void			ft_print_map(t_map **map);
+void			ft_append_down_up_map(t_map **head, int *map_arr);
+void			ft_append_prev_map(t_map **head);
+void			ft_append_next_map(t_map **head, t_map *node);
+void			ft_free_map(t_map **head);
+int				*ft_mapsize(t_map **map);
+
 
 #endif

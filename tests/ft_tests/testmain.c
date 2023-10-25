@@ -128,19 +128,19 @@ void	ft_print_map(t_map **map)
 	}
 }
 
-int		ft_mapsize(t_map **map)
-{
-	t_map	*temp;
-	int		x;
-	int 	y;
-
-	x = -1;
-	temp = *map;
-	while (x++, temp->next)
-		temp = temp->next;
-	y = -1;
-	temp = -x2
-}
+//int		ft_mapsize(t_map **map)
+//{
+//	t_map	*temp;
+//	int		x;
+//	int 	y;
+//
+//	x = -1;
+//	temp = *map;
+//	while (x++, temp->next)
+//		temp = temp->next;
+//	y = -1;
+//	temp = -x2
+//}
 
 void	ft_appendnext(t_map **head, t_map *node)
 {
