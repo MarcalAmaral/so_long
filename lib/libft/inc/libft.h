@@ -6,7 +6,7 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 20:26:52 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/10/10 21:04:40 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/10/28 16:25:43 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	**ft_split(const char *s, char c);
 char	*ft_strdup(const char *s);
 char	*ft_strchr(const char *s, int c);
 t_list	*ft_lstnew(void *content);
-t_list	*ft_lstlast(t_list 	*lst);
+t_list	*ft_lstlast(t_list *lst);
 char	*get_next_line(int fd);
 t_byte	*ft_newnode(char content);
 void	ft_addend_list(t_byte **head, t_byte *new);

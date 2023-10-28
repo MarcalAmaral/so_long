@@ -22,7 +22,7 @@ t_map	*ft_lstfirst_map(t_map *map)
 	while (map)
 	{
 		if (!map->prev)
-			return(map);
+			return (map);
 		map = map->prev;
 	}
 	return (map);
@@ -33,7 +33,7 @@ t_map	*ft_lstlast_map(t_map *map)
 	while (map)
 	{
 		if (!map->next)
-			return(map);
+			return (map);
 		map = map->next;
 	}
 	return (map);
@@ -71,10 +71,10 @@ t_map	**ft_newline_map(t_map **head, t_map *node)
 	return (&temp->down);
 }
 
-void	ft_readmap(t_map **map, int	fd)
+void	ft_readmap(t_map **map, int fd)
 {
 	int		j;
-	char 	*line;
+	char	*line;
 
 	j = 0;
 	line = get_next_line(fd);
@@ -87,7 +87,7 @@ void	ft_readmap(t_map **map, int	fd)
 				map = ft_newline_map(map, ft_newnode_map(line[j]));
 				j++;
 			}
-			if (line[j] == '\r' ||line[j] == '\n' || line[j] == '\0')
+			if (line[j] == '\r' || line[j] == '\n' || line[j] == '\0')
 				break ;
 			ft_append_next_map(map, ft_newnode_map(line[j]));
 			j++;
@@ -109,7 +109,6 @@ void	ft_readmap(t_map **map, int	fd)
 //    fd = open("maps/map.ber", O_RDONLY);
 //	ft_readmap(head, fd);
 //	arr = ft_mapsize(head);
-//	ft_append_down_up_map(head, arr);
 //	free(arr);
 //	ft_free_map(head);
 //	free(head);

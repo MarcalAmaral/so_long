@@ -12,8 +12,8 @@
 
 #include "../include/so_long.h"
 
-void    get_size_window(t_window *window)
+void	get_size_window(t_window *window)
 {
-    window->window_w = window->arr_map[0] * SIZE_IMAGE;
-    window->window_w = window->arr_map[1] * SIZE_IMAGE;
+	window->window_w = window->arr_map[0] * SIZE_IMAGE;
+	window->window_h = window->arr_map[1] * SIZE_IMAGE;
 }

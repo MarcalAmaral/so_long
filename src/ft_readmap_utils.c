@@ -20,14 +20,16 @@ int		*ft_mapsize(t_map **map);
 
 void	ft_append_down_up_map(t_map **head, int *map_arr)
 {
-    t_map   *up;
-    t_map   *down;
-    int y;
+	t_map	*up;
+	t_map	*down;
+	int		y;
+	int		x;
 
-    y = 0;
+	y = 0;
+	x = map_arr[0];
 	if (*head == NULL)
 		return ;
-	if (map_arr[0]--)
+	if (x--)
 	{
 		up = *head;
 		down = up->down;
@@ -41,7 +43,7 @@ void	ft_append_down_up_map(t_map **head, int *map_arr)
 		up = up->next;
 	}
 	down = ft_lstfirst_map(down);
-    ft_append_down_up_map(&down, map_arr);
+	ft_append_down_up_map(&down, map_arr);
 	return ;
 }
 
@@ -65,7 +67,7 @@ void	ft_append_prev_map(t_map **map)
 	{
 		node = *map;
 		while (j++, j <= i - 1)
-			if	(i != 1)
+			if (i != 1)
 				node = node->next;
 		j = 0;
 		temp->prev = node;
@@ -110,7 +112,7 @@ void	ft_free_map(t_map **head)
 	return ;
 }
 
-int		*ft_mapsize(t_map **map)
+int	*ft_mapsize(t_map **map)
 {
 	t_map	*temp;
 	int		*arr;

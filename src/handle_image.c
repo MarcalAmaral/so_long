@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 20:43:03 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/10/25 21:28:57 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/28 17:07:55 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	ft_create_texture_from_png(t_window *window)
 {
-	window->background_texture = mlx_load_png("../textures/map_textures/128x128/Grass_01-128x128.png");
-	window->wall_texture = mlx_load_png("../textures/map_textures/128x128/Bricks/Bricks_02-128x128.png");
-	window->player_texture = mlx_load_png("../textures/player_idle/tile002.png");
-	window->exit_texture = mlx_load_png("../textures/map_textures/128x128/Tile/Tile_24-128x128.png");
-	window->collectable_texture = mlx_load_png("../textures/map_textures/128x128/Roofs/Roofs_02-128x128.png");
+	window->background_texture = mlx_load_png("textures/0/ground.png");
+	window->wall_texture = mlx_load_png("textures/1/wall.png");
+	window->player_texture = mlx_load_png("textures/P/p_idle.png");
+	window->exit_texture = mlx_load_png("textures/E/door.png");
+	window->collectable_texture = mlx_load_png("textures/C/coin.png");
 	if (!window->background_texture || !window->wall_texture
 		|| !window->player_texture || !window->collectable_texture
 		|| !window->exit_texture)

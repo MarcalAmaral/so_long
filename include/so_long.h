@@ -59,16 +59,14 @@ void		ft_append_prev_map(t_map **head);
 void		ft_append_next_map(t_map **head, t_map *node);
 void		ft_free_map(t_map **head);
 /*Handle images*/
-static int	map_to_window(t_window *window, t_map **map);
-int			create_texture_from_png(t_window *window);
+//static int	map_to_window(t_window *window, t_map **map);
 int			game_init(void);
 int			map_construct(t_window *window);
-int			create_texture_from_png(t_window *window);
-void		create_img_from_texture(t_window *window);
+int			ft_create_texture_from_png(t_window *window);
+void		ft_create_img_from_texture(t_window *window);
 void		get_size_window(t_window *window);
 void		draw_map(t_window *window, t_map **map);
 void		ft_drawlayers(t_window *window, t_map **map, char type);
-void		create_img_from_texture(t_window *window);
 /* Misc functions */
 int			*ft_mapsize(t_map **map);
 void		ft_error(char *error);

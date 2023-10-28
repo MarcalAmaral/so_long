@@ -5,6 +5,7 @@
 		"stddef.h": "c",
 		"stdarg.h": "c",
 		"libft.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"unistd.h": "c"
 	}
 }

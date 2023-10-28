@@ -79,7 +79,20 @@ void    ft_print_column(t_map **map, int *arr)
     return ;
 }
 
+/* void    ft_print_map(t_map **map)
+{
+    t_map *node;
 
+    node = *map;
+    while (node)
+    {
+        ft_printf("%c", node->content);
+        node = node->next;
+    }
+    ft_print_map(&node->down);
+    return ;
+}
+ */
 void    ft_print_line(t_map **map, int *arr)
 {
     t_map	*p_x;
@@ -110,6 +123,7 @@ int main(void)
     arr = ft_mapsize(head);
     ft_print_line(head, arr);
     ft_print_column(head, arr);
+//    ft_print_map(head);
 	ft_free_map(head);
 	free(head);
     return (0);

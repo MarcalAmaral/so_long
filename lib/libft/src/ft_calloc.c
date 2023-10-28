@@ -6,7 +6,7 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:06:07 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/09/30 22:46:36 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/10/28 16:25:38 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	{
 		i = 0;
 		while (i < (nmemb * size))
-			{
-				ptr[i] = 0x0;
-				i++;
-			}
+		{
+			ptr[i] = 0x0;
+			i++;
+		}
 	}
 	return ((void *) ptr);
 }
