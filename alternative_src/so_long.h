@@ -16,13 +16,7 @@
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "../lib/libft/inc/libft.h"
 # include <fcntl.h>
-# include <stddef.h>
-# define EXIT_FAIL	1
-# define SIZE_IMAGE 32
-
-typedef struct s_game {
-	int	n_collectables;
-}	t_game;
+# define SIZE_IMG 32
 
 typedef struct s_map {
 	char			content;
@@ -35,20 +29,18 @@ typedef struct s_map {
 
 typedef struct s_window {
 	mlx_t			*mlx;
-	int				*arr_map;
-	mlx_texture_t	*wall_texture;
-	mlx_texture_t	*background_texture;
-	mlx_texture_t	*player_texture;
-	mlx_texture_t	*exit_texture;
-	mlx_texture_t	*collectable_texture;
-	mlx_image_t		*background_img;
-	mlx_image_t		*wall_img;
-	mlx_image_t		*player_img;
-	mlx_image_t		*exit_img;
-	mlx_image_t		*collectable_img;
-	int				window_h;
-	int				window_w;
+	mlx_texture_t	*w_texture;
+	mlx_texture_t	*bd_texture;
+	mlx_texture_t	*p_texture;
+	mlx_texture_t	*e_texture;
+	mlx_texture_t	*c_texture;
+	mlx_image_t		*bd_img;
+	mlx_image_t		*w_img;
+	mlx_image_t		*p_img;
+	mlx_image_t		*e_img;
+	mlx_image_t		*c_img;
 	t_map			**map;
+	int				*arr_map;
 }	t_window;
 
 typedef struct s_player {
@@ -57,9 +49,6 @@ typedef struct s_player {
 	int		n_mov;
 	t_map	*p_position;
 }	t_player;
-
-/*Main Function*/
-int	main(void);
 
 /*Handle linked list matrix*/
 t_map	*ft_newnode_map(char content);
@@ -72,17 +61,14 @@ void	ft_append_prev_map(t_map **head);
 void	ft_append_next_map(t_map **head, t_map *node);
 void	ft_free_map(t_map **head);
 /*Handle images*/
-//static int	map_to_window(t_window *window, t_map **map);
-int		game_init(void);
-int		map_construct(t_window *window);
-int		ft_create_texture_from_png(t_window *window);
+int		ft_create_textures_from_png(t_window *window);
 void	ft_create_img_from_texture(t_window *window);
-void	get_size_window(t_window *window);
-void	draw_map(t_window *window, t_map **map);
-void	ft_drawlayers(t_window *window, t_map **map, char type);
+int		map_construct(t_window *window);
+void	draw_map(t_window *window);
+void	ft_map_to_window(t_window *window);
 /* Misc functions */
-int		*ft_mapsize(t_map **map);
-void	ft_error(char *error);
 void	hook_close_window(void *param);
+int		*ft_mapsize(t_map **map);
+int		game_init(void);
 
 #endif
