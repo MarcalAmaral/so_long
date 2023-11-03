@@ -39,14 +39,16 @@ typedef struct s_window {
 	mlx_image_t		*p_img;
 	mlx_image_t		*e_img;
 	mlx_image_t		*c_img;
+	t_map			*temp;
 	t_map			**map;
 	int				*arr_map;
+	int				collectables;
+	int				n_mov;
 }	t_window;
 
 typedef struct s_player {
 	int		p_x;
 	int		p_y;
-	int		n_mov;
 	t_map	*p_position;
 }	t_player;
 
@@ -65,10 +67,23 @@ int		ft_create_textures_from_png(t_window *window);
 void	ft_create_img_from_texture(t_window *window);
 int		map_construct(t_window *window);
 void	draw_map(t_window *window);
+void	ft_draw(t_window *window, mlx_image_t *img, char type);
 void	ft_map_to_window(t_window *window);
 /* Misc functions */
 void	hook_close_window(void *param);
 int		*ft_mapsize(t_map **map);
 int		game_init(void);
+void	collect(t_window *window, t_map *c_node);
+
+/* Player Movements */
+void    ft_hook_player_movement(mlx_key_data_t keydata, void *param);
+void    ft_hook_close_window(void *param);
+void	ft_player_move_up(t_window *window, t_player *player);
+void	ft_player_move_down(t_window *window, t_player *player);
+void	ft_player_move_left(t_window *window, t_player *player);
+void	ft_player_move_right(t_window *window, t_player *player);
+void	update_player_movement(t_window *window, t_player *player);
+int		ft_create_new_player_image(t_window *window);
+void	p_position(t_window *window, t_player *player);
 
 #endif

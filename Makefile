@@ -58,7 +58,6 @@ $(LIBFT):
 makedir:
 	@mkdir -p $(BIN_PATH) $(OBJ_PATH) $(DBG_PATH)
 
-
 .PHONY: all
 all: $(TARGET)
 
@@ -70,7 +69,7 @@ clean:
 	@echo CLEAN $(CLEAN_LIST)
 	@rm -f $(CLEAN_LIST)
 
-.PHONY: distclean
+.PHONY: fclean
 fclean:
 	@echo CLEAN $(DISTCLEAN_LIST)
 	@rm -f $(DISTCLEAN_LIST)

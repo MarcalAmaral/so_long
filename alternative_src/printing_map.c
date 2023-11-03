@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printing_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:21:19 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/11/01 21:01:13 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/11/02 19:49:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,37 +32,7 @@ void	ft_draw_ground(t_window *window)
 	}
 }
 
-//void	draw_layers(t_window *window, char type)
-//{	
-//	t_map	*node;
-//	int		x;
-//	int		y;
-//
-//	x = -1;
-//	y = 0;
-//	node = *(window->map);
-//	while (x++ < window->arr_map[0])
-//	{
-//		while (y++ < window->arr_map[1])
-//		{
-//			if (node->content == 'P')
-//				mlx_image_to_window(window->mlx, window->p_img, \
-//				x * SIZE_IMG, y * SIZE_IMG);
-//			else if (node->content == 'C')
-//				mlx_image_to_window(window->mlx, window->p_img, \
-//				x * SIZE_IMG, y * SIZE_IMG);
-//			else if (node->content == '1')
-//				mlx_image_to_window(window->mlx, window->p_img, \
-//				x * SIZE_IMG, y * SIZE_IMG);
-//			else if (node->content == 'E')
-//				mlx_image_to_window(window->mlx, window->p_img, \
-//				x * SIZE_IMG, y * SIZE_IMG);
-//			node = node->next;
-//		}
-//	}
-//}
-
-void	ft_draw_wall(t_window *window, mlx_image_t *img, char type)
+void	ft_draw(t_window *window, mlx_image_t *img, char type)
 {
 	t_map	*node;
 	int		x;
@@ -76,8 +46,7 @@ void	ft_draw_wall(t_window *window, mlx_image_t *img, char type)
 		while (y < window->arr_map[1])
 		{
 			if (node->content == type)
-				mlx_image_to_window(window->mlx, img, \
-			x * SIZE_IMG, y * SIZE_IMG);
+				mlx_image_to_window(window->mlx, img, x * SIZE_IMG, y * SIZE_IMG);
 			if (node->next == NULL)
 			{
 				node = ft_lstfirst_map(node);
@@ -95,7 +64,10 @@ void	ft_draw_wall(t_window *window, mlx_image_t *img, char type)
 void	draw_map(t_window *window)
 {
 	ft_draw_ground(window);
-	ft_draw_wall(window);
+	ft_draw(window, window->w_img, '1');
+	ft_draw(window, window->c_img, 'C');
+	ft_draw(window, window->p_img, 'P');
+	return ;
 }
 
 int	map_construct(t_window *window)
