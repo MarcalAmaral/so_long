@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../inc/so_long.h"
 
 t_map	*ft_lstlast_map(t_map *map);
 t_map	*ft_lstfirst_map(t_map *map);

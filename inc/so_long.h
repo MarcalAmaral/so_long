@@ -73,11 +73,10 @@ void	ft_map_to_window(t_window *window);
 void	hook_close_window(void *param);
 int		*ft_mapsize(t_map **map);
 int		game_init(void);
-void	collect(t_window *window, t_map *c_node);
 
 /* Player Movements */
-void    ft_hook_player_movement(mlx_key_data_t keydata, void *param);
-void    ft_hook_close_window(void *param);
+void	ft_hook_player_movement(mlx_key_data_t keydata, void *param);
+void	ft_hook_close_window(void *param);
 void	ft_player_move_up(t_window *window, t_player *player);
 void	ft_player_move_down(t_window *window, t_player *player);
 void	ft_player_move_left(t_window *window, t_player *player);
@@ -85,5 +84,8 @@ void	ft_player_move_right(t_window *window, t_player *player);
 void	update_player_movement(t_window *window, t_player *player);
 int		ft_create_new_player_image(t_window *window);
 void	p_position(t_window *window, t_player *player);
+
+/* Handle collectables*/
+void	ft_collect(t_window *window, t_player *player, char *dir);
 
 #endif

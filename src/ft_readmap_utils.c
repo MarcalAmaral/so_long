@@ -10,13 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
-
-void	ft_append_down_up_map(t_map **head, int *map_arr);
-void	ft_append_prev_map(t_map **head);
-void	ft_append_next_map(t_map **head, t_map *node);
-void	ft_free_map(t_map **head);
-int		*ft_mapsize(t_map **map);
+#include "../inc/so_long.h"
 
 void	ft_append_down_up_map(t_map **head, int *map_arr)
 {
@@ -49,10 +43,10 @@ void	ft_append_down_up_map(t_map **head, int *map_arr)
 
 void	ft_append_prev_map(t_map **map)
 {
-	t_map		*temp;
-	t_map		*node;
-	int			i;
-	int			j;
+	t_map	*temp;
+	t_map	*node;
+	int		i;
+	int		j;
 
 	temp = *map;
 	i = 0;

@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_collectables.c                                  :+:      :+:    :+:   */
+/*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 17:37:42 by marvin            #+#    #+#             */
-/*   Updated: 2023/11/02 17:37:42 by marvin           ###   ########.fr       */
+/*   Created: 2023/10/25 20:43:58 by marvin            #+#    #+#             */
+/*   Updated: 2023/10/25 20:43:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./so_long.h"
+#include "../include/so_long.h"
 
-void	collect(t_window *window, t_map *c_node)
+void	hook_close_window(void *param)
 {
-	int	i;
+	t_window	*window;
 
-	i = 0;
- 	while (i < window->collectables)
- 	{
- 		if (c_node->content == 'C')
- 		{
- 			window->c_img->instances[i].enabled = 0;
-			c_node->content = '0';
- 			window->collectables -= 1;
- 		}
- 		i++;
- 	}
- 	if (window->collectables <= 0)
- 		ft_draw(window, window->e_img,'E');
-   return ;
+	window = (t_window *)param;
+	if (mlx_is_key_down(window->mlx, MLX_KEY_ESCAPE))
+	{
+		mlx_close_window(window->mlx);
+	}
 }

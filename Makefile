@@ -1,38 +1,38 @@
 # tool macros
-CC ?= cc
-CFLAGS := -Wall -Werror -Wextra
-DBGFLAGS := -g
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
 
 # path macros
-BIN_PATH := bin
-OBJ_PATH := obj
-SRC_PATH := src
-DBG_PATH := debug
+BIN_PATH = .
+OBJ_PATH = obj
+SRC_PATH = src
 PATH_MLX = ./lib/MLX42
 PATH_MLXLIB = $(PATH_MLX)/build/libmlx42.a -ldl -lm -lpthread -lglfw
 PATH_LIBFT = ./lib/libft
 PATH_LIBFTLIB = $(PATH_LIBFT)/libft.a
 
 # compile macros
-TARGET_NAME := so_long # FILL: target name
-ifeq ($(OS),Windows_NT)
-	TARGET_NAME := $(addsuffix .exe,$(TARGET_NAME))
-endif
-TARGET := $(BIN_PATH)/$(TARGET_NAME)
-TARGET_DEBUG := $(DBG_PATH)/$(TARGET_NAME)
+TARGET_NAME = so_long # FILL: target name
+TARGET = $(BIN_PATH)/$(TARGET_NAME)
 
 # src files & obj files	
-SRC := $(foreach x, $(SRC_PATH), $(wildcard $(addprefix $(x)/*,.c*)))
-OBJ := $(addprefix $(OBJ_PATH)/, $(addsuffix .o, $(notdir $(basename $(SRC)))))
-OBJ_DEBUG := $(addprefix $(DBG_PATH)/, $(addsuffix .o, $(notdir $(basename $(SRC)))))
-INCLUDE := -I ./include -I $(PATH_MLX)/include
+FILES = draw_map \
+		ft_readmap \
+		ft_readmap_utils \
+		game_init \
+		handle_collectables \
+		handle_image \
+		handle_input \
+		handle_movements \
+		main \
+
+OBJ = $(addprefix $(OBJ_PATH)/, $(addsuffix .o, $(FILES)))
+INCLUDE = -I ./inc -I $(PATH_MLX)/include
 
 # clean files list
-DISTCLEAN_LIST := $(OBJ) \
-                  $(OBJ_DEBUG)
-CLEAN_LIST := $(TARGET) \
-			  $(TARGET_DEBUG) \
-			  $(DISTCLEAN_LIST)
+DISTCLEAN_LIST = $(OBJ)
+CLEAN_LIST = $(TARGET) \
+			$(DISTCLEAN_LIST)
 
 # default rule
 default: makedir all
@@ -43,12 +43,6 @@ $(TARGET): $(LIBFT) $(OBJ)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c*
 	$(CC) $(INCLUDE) -c $< -o $@
-
-$(DBG_PATH)/%.o: $(SRC_PATH)/%.c*
-	$(CC) $(CFLAGS) $(DBGFLAGS) -c -o $@ $<
-
-$(TARGET_DEBUG): $(LIBFT) $(OBJ_DEBUG)
-	$(CC) $(CFLAGS) $(DBGFLAGS) $(OBJ_DEBUG) $(PATH_MLXLIB) $(PATH_LIBFTLIB) -o $@
 
 $(LIBFT):
 	make -C $(PATH_LIB)

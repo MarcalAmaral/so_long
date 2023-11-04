@@ -1,49 +1,82 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_init.c                                        :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 20:29:32 by marvin            #+#    #+#             */
-/*   Updated: 2023/10/25 20:29:32 by marvin           ###   ########.fr       */
+/*   Created: 2023/11/01 16:24:54 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/11/03 14:31:46 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../inc/so_long.h"
 
-static int	map_to_window(t_window *window, t_map **map)
+void	ft_count_elem(t_window *window, char type)
 {
-	if (1)
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	window->temp = *(window->map);
+	while (x < window->arr_map[0])
 	{
-		get_size_window(window);
-		window->mlx = mlx_init(1280, 720, "So_long", true);
-		if (!window->mlx)
-			ft_error("Error\n - Fail to init the window\n");
-		if (map_construct(window))
-			draw_map(window, map);
-		else
-			ft_error("Error\n - Fail to construct the map\n");
-		return (1);
+		while (y < window->arr_map[1])
+		{
+			if (window->temp->content == type)
+				window->collectables++;
+			if (window->temp->next == NULL)
+			{
+				window->temp = ft_lstfirst_map(window->temp);
+				break ;
+			}
+			window->temp = window->temp->next;
+			y++;
+		}
+		window->temp = window->temp->down;
+		x++;
+		y = 0;
 	}
+}
+
+void	ft_map_to_window(t_window *window)
+{
+	window->mlx = mlx_init(1280, 720, "So_long", 1);
+	if (map_construct(window))
+		draw_map(window);
 	else
-		return (0);
+		ft_printf("Fail to construct map");
+	return ;
+}
+
+void	ft_map(t_window *window)
+{
+	int		fd;
+
+	fd = open("maps/map.ber", O_RDONLY);
+	if (fd <= 0)
+	{
+		ft_printf("Verificar se o path para o arquivo está correto");
+		return ;
+	}
+	window->map = (t_map **) ft_calloc(1, sizeof(t_map **));
+	ft_readmap(window->map, fd);
+	window->arr_map = ft_mapsize(window->map);
+	ft_append_down_up_map(window->map, window->arr_map);
+	return ;
 }
 
 int	game_init(void)
 {
-	t_map		**map;
 	t_window	window;
-	int			fd;
 
-	fd = open("maps/map.ber", O_RDONLY);
-	map = (t_map **) ft_calloc(1, sizeof(t_map **));
 	ft_bzero(&window, sizeof(t_window));
-	ft_readmap(map, fd);
-	window.arr_map = ft_mapsize(map);
-	ft_append_down_up_map(map, window.arr_map);
-	map_to_window(&window, map);
-	mlx_loop_hook(window.mlx, &hook_close_window, &window);
+	ft_map(&window);
+	ft_count_elem(&window, 'C');
+	ft_map_to_window(&window);
+	mlx_loop_hook(window.mlx, &ft_hook_close_window, &window);
+	mlx_key_hook(window.mlx, &ft_hook_player_movement, &window);
 	mlx_loop(window.mlx);
 	return (1);
 }
