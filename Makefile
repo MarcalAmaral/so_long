@@ -3,7 +3,6 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
 # path macros
-BIN_PATH = .
 OBJ_PATH = obj
 SRC_PATH = src
 PATH_MLX = ./lib/MLX42
@@ -13,7 +12,7 @@ PATH_LIBFTLIB = $(PATH_LIBFT)/libft.a
 
 # compile macros
 TARGET_NAME = so_long # FILL: target name
-TARGET = $(BIN_PATH)/$(TARGET_NAME)
+TARGET = $(TARGET_NAME)
 
 # src files & obj files	
 FILES = draw_map \
@@ -24,6 +23,10 @@ FILES = draw_map \
 		handle_image \
 		handle_input \
 		handle_movements \
+		validate_map \
+		validate_args \
+		handle_error \
+		handle_free \
 		main \
 
 OBJ = $(addprefix $(OBJ_PATH)/, $(addsuffix .o, $(FILES)))
@@ -39,7 +42,7 @@ default: makedir all
 
 # non-phony targets
 $(TARGET): $(LIBFT) $(OBJ)
-	$(CC) -o $@ $(OBJ) $(CFLAGS) $(PATH_MLXLIB) $(PATH_LIBFTLIB)
+	$(CC) -g -o $@ $(OBJ) $(CFLAGS) $(PATH_MLXLIB) $(PATH_LIBFTLIB)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c*
 	$(CC) $(INCLUDE) -c $< -o $@
@@ -47,23 +50,19 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c*
 $(LIBFT):
 	make -C $(PATH_LIB)
 
-# phony rules
-.PHONY: makedir
 makedir:
-	@mkdir -p $(BIN_PATH) $(OBJ_PATH) $(DBG_PATH)
+	@mkdir -p $(OBJ_PATH)
 
-.PHONY: all
 all: $(TARGET)
 
-.PHONY: debug
-debug: $(TARGET_DEBUG)
-
-.PHONY: clean
 clean:
+	@echo CLEAN $(DISTCLEAN_LIST)
+	@rm -f $(DISTCLEAN_LIST)
+
+fclean:
 	@echo CLEAN $(CLEAN_LIST)
 	@rm -f $(CLEAN_LIST)
 
-.PHONY: fclean
-fclean:
-	@echo CLEAN $(DISTCLEAN_LIST)
-	@rm -f $(DISTCLEAN_LIST)
+re: fclean all
+
+.PHONY: makedir all clean fclean re

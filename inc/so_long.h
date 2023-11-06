@@ -17,6 +17,10 @@
 # include "../lib/libft/inc/libft.h"
 # include <fcntl.h>
 # define SIZE_IMG 32
+# define EXIT_FAIL 1
+# define EXIT_OK 0
+# define TRUE 1
+# define FALSE 0
 
 typedef struct s_map {
 	char			content;
@@ -25,9 +29,10 @@ typedef struct s_map {
 	struct s_map	*prev;
 	struct s_map	*up;
 	struct s_map	*down;
+	size_t			instances;
 }	t_map;
 
-typedef struct s_window {
+typedef struct s_game {
 	mlx_t			*mlx;
 	mlx_texture_t	*w_texture;
 	mlx_texture_t	*bd_texture;
@@ -39,12 +44,12 @@ typedef struct s_window {
 	mlx_image_t		*p_img;
 	mlx_image_t		*e_img;
 	mlx_image_t		*c_img;
-	t_map			*temp;
 	t_map			**map;
+	t_map			*temp;
 	int				*arr_map;
-	int				collectables;
+	int				remain_c;
 	int				n_mov;
-}	t_window;
+}	t_game;
 
 typedef struct s_player {
 	int		p_x;
@@ -63,29 +68,41 @@ void	ft_append_prev_map(t_map **head);
 void	ft_append_next_map(t_map **head, t_map *node);
 void	ft_free_map(t_map **head);
 /*Handle images*/
-int		ft_create_textures_from_png(t_window *window);
-void	ft_create_img_from_texture(t_window *window);
-int		map_construct(t_window *window);
-void	draw_map(t_window *window);
-void	ft_draw(t_window *window, mlx_image_t *img, char type);
-void	ft_map_to_window(t_window *window);
+int		ft_create_textures_from_png(t_game *game);
+void	ft_create_img_from_texture(t_game *game);
+int		map_construct(t_game *game);
+void	draw_map(t_game *game);
+void	ft_draw(t_game *game, mlx_image_t *img, char type);
+int		ft_map_to_window(t_game *game);
 /* Misc functions */
 void	hook_close_window(void *param);
 int		*ft_mapsize(t_map **map);
-int		game_init(void);
+int		game_init(char *path);
 
 /* Player Movements */
 void	ft_hook_player_movement(mlx_key_data_t keydata, void *param);
 void	ft_hook_close_window(void *param);
-void	ft_player_move_up(t_window *window, t_player *player);
-void	ft_player_move_down(t_window *window, t_player *player);
-void	ft_player_move_left(t_window *window, t_player *player);
-void	ft_player_move_right(t_window *window, t_player *player);
-void	update_player_movement(t_window *window, t_player *player);
-int		ft_create_new_player_image(t_window *window);
-void	p_position(t_window *window, t_player *player);
+void	ft_player_move_up(t_game *game, t_player *player);
+void	ft_player_move_down(t_game *game, t_player *player);
+void	ft_player_move_left(t_game *game, t_player *player);
+void	ft_player_move_right(t_game *game, t_player *player);
+void	update_player_movement(t_game *game, t_player *player);
+int		ft_create_new_player_image(t_game *game);
+void	p_position(t_game *game, t_player *player);
 
 /* Handle collectables*/
-void	ft_collect(t_window *window, t_player *player, char *dir);
+void	ft_collect(t_game *game, t_map *node);
+
+/*Handle free*/
+void	ft_error(char *error);
+void    ft_freegame(t_game *game);
+void	ft_freegame_unit(t_game *game);
+
+/* Handle errors */
+int	check_args(int argc, char **argv);
+
+/* Validate map*/
+int ft_map_is_rectangle(t_game *game);
+int	ft_validate_tileset(t_game *game);
 
 #endif

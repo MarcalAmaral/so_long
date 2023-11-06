@@ -46,6 +46,7 @@ t_map	*ft_newnode_map(char content)
 	new_node = (t_map *) ft_calloc(1, sizeof(t_map));
 	new_node->content = content;
 	new_node->dup_content = content;
+	new_node->instances = 0;
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	new_node->up = NULL;

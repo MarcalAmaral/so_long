@@ -1,82 +1,90 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:24:54 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/11/03 14:31:46 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/11/05 22:31:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-void	ft_count_elem(t_window *window, char type)
+void	ft_count_elem(t_game *game, char type)
 {
 	int		x;
 	int		y;
 
 	x = 0;
 	y = 0;
-	window->temp = *(window->map);
-	while (x < window->arr_map[0])
+	game->temp = *(game->map);
+	while (x < game->arr_map[0])
 	{
-		while (y < window->arr_map[1])
+		while (y < game->arr_map[1])
 		{
-			if (window->temp->content == type)
-				window->collectables++;
-			if (window->temp->next == NULL)
+			if (game->temp->content == type)
+				game->remain_c++;
+			if (game->temp->next == NULL)
 			{
-				window->temp = ft_lstfirst_map(window->temp);
+				game->temp = ft_lstfirst_map(game->temp);
 				break ;
 			}
-			window->temp = window->temp->next;
+			game->temp = game->temp->next;
 			y++;
 		}
-		window->temp = window->temp->down;
+		game->temp = game->temp->down;
 		x++;
 		y = 0;
 	}
 }
 
-void	ft_map_to_window(t_window *window)
+int	ft_map_to_window(t_game *game)
 {
-	window->mlx = mlx_init(1280, 720, "So_long", 1);
-	if (map_construct(window))
-		draw_map(window);
+	if (ft_map_is_rectangle(game) && ft_validate_tileset(game))
+	{
+		game->mlx = mlx_init(1280, 720, "So_long", 1);
+		if (!game->mlx)
+			ft_error("Error\n Fail to init the window.\n");
+		if (map_construct(game))
+			draw_map(game);
+		else
+			ft_error("Error\n Fail to construct map.\n");
+		return(TRUE);
+	}
 	else
-		ft_printf("Fail to construct map");
-	return ;
+		return (FALSE);
 }
 
-void	ft_map(t_window *window)
+void	ft_map(t_game *game, char *path)
 {
 	int		fd;
 
-	fd = open("maps/map.ber", O_RDONLY);
+	fd = open(path, O_RDONLY);
 	if (fd <= 0)
-	{
-		ft_printf("Verificar se o path para o arquivo está correto");
-		return ;
-	}
-	window->map = (t_map **) ft_calloc(1, sizeof(t_map **));
-	ft_readmap(window->map, fd);
-	window->arr_map = ft_mapsize(window->map);
-	ft_append_down_up_map(window->map, window->arr_map);
+		ft_error("Error\n Check that the path to the file is correct.\n");
+	game->map = (t_map **) ft_calloc(1, sizeof(t_map **));
+	ft_readmap(game->map, fd);
+	game->arr_map = ft_mapsize(game->map);
+	ft_append_down_up_map(game->map, game->arr_map);
 	return ;
 }
 
-int	game_init(void)
+int	game_init(char *path)
 {
-	t_window	window;
+	t_game	game;
 
-	ft_bzero(&window, sizeof(t_window));
-	ft_map(&window);
-	ft_count_elem(&window, 'C');
-	ft_map_to_window(&window);
-	mlx_loop_hook(window.mlx, &ft_hook_close_window, &window);
-	mlx_key_hook(window.mlx, &ft_hook_player_movement, &window);
-	mlx_loop(window.mlx);
+	ft_bzero(&game, sizeof(t_game));
+	ft_map(&game, path);
+	ft_count_elem(&game, 'C');
+	if (ft_map_to_window(&game))
+	{
+		mlx_loop_hook(game.mlx, &ft_hook_close_window, &game);
+		mlx_key_hook(game.mlx, &ft_hook_player_movement, &game);
+		mlx_loop(game.mlx);
+	}
+	else
+		ft_freegame_unit(&game);
 	return (1);
 }

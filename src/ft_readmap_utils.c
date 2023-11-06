@@ -87,25 +87,6 @@ void	ft_append_next_map(t_map **head, t_map *node)
 	return ;
 }
 
-void	ft_free_map(t_map **head)
-{
-	t_map	*temp;
-	t_map	*temp1;
-
-	if (!*head)
-		return ;
-	temp = *head;
-	*head = temp->down;
-	while (temp)
-	{
-		temp1 = temp;
-		temp = temp->next;
-		free(temp1);
-	}
-	ft_free_map(head);
-	return ;
-}
-
 int	*ft_mapsize(t_map **map)
 {
 	t_map	*temp;

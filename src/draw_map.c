@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:21:19 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/11/03 18:29:44 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/11/05 22:28:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-void	ft_draw_ground(t_window *window)
+void	ft_draw_ground(t_game *game)
 {
 	int		x;
 	int		y;
 
 	x = 0;
 	y = 0;
-	while (x < window->arr_map[0])
+	while (x < game->arr_map[0])
 	{
-		while (y < window->arr_map[1])
+		while (y < game->arr_map[1])
 		{
-			mlx_image_to_window(window->mlx, window->bd_img, \
+			mlx_image_to_window(game->mlx, game->bd_img, \
 			x * SIZE_IMG, y * SIZE_IMG);
 			y++;
 		}
@@ -32,51 +32,61 @@ void	ft_draw_ground(t_window *window)
 	}
 }
 
-void	ft_draw(t_window *window, mlx_image_t *img, char type)
+void	ft_while_y(t_game *game, mlx_image_t *img, char type, int *xy)
 {
-	t_map	*node;
-	int		x;
-	int		y;
-
-	x = 0;
-	y = 0;
-	node = *(window->map);
-	while (x < window->arr_map[0])
+	while (xy[1] < game->arr_map[1])
 	{
-		while (y < window->arr_map[1])
+		if (game->temp->content == type)
 		{
-			if (node->content == type)
-				mlx_image_to_window(window->mlx, img, x * SIZE_IMG, y * SIZE_IMG);
-			if (node->next == NULL)
-			{
-				node = ft_lstfirst_map(node);
-				node = node->down;
-				break ;
-			}
-			node = node->next;
-			y++;
+			mlx_image_to_window(game->mlx, img,  xy[0] * SIZE_IMG, xy[1] * SIZE_IMG);
+			game->temp->instances = xy[2];
+			xy[2]++;
 		}
-		y = 0;
-		x++;
+		if (game->temp->next == NULL)
+			break ;
+		if (game->temp->content == 'E' && type == 'E')
+			game->e_img->instances[game->temp->instances].enabled = 0;
+		game->temp = game->temp->next;
+		xy[1]++;
 	}
-}
-
-void	draw_map(t_window *window)
-{
-	ft_draw_ground(window);
-	ft_draw(window, window->w_img, '1');
-	ft_draw(window, window->c_img, 'C');
-	ft_draw(window, window->p_img, 'P');
 	return ;
 }
 
-int	map_construct(t_window *window)
+void	ft_draw(t_game *game, mlx_image_t *img, char type)
 {
-	if (ft_create_textures_from_png(window))
+	int		x_y[3];
+
+	x_y[0] = 0;
+	x_y[1] = 0;
+	x_y[2] = 0;
+	game->temp = *(game->map);
+	while (x_y[0] < game->arr_map[0])
 	{
-		ft_create_img_from_texture(window);
-		return (1);
+		ft_while_y(game, img, type, x_y);
+		game->temp = ft_lstfirst_map(game->temp);
+		game->temp = game->temp->down;
+		x_y[1] = 0;
+		x_y[0]++;
+	}
+}
+
+void	draw_map(t_game *game)
+{
+	ft_draw_ground(game);
+	ft_draw(game, game->w_img, '1');
+	ft_draw(game, game->c_img, 'C');
+	ft_draw(game, game->p_img, 'P');
+	ft_draw(game, game->e_img, 'E');
+	return ;
+}
+
+int	map_construct(t_game *game)
+{
+	if (ft_create_textures_from_png(game))
+	{
+		ft_create_img_from_texture(game);
+		return (TRUE);
 	}
 	else
-		return (0);
+		return (FALSE);
 }
