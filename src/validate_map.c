@@ -87,18 +87,27 @@ int     ft_validate_tileset(t_game *game)
 	return (TRUE);
 }    
 
-void    ft_validate_types(t_game *game)
+int    ft_validate_types(t_game *game)
 {
 	int types;
 
 	types =	ft_count_types(game, 'C');
 	if (types < 1)
+	{
 		ft_error("Error\n Invalid map, please make sure the map passed has at least one collectible.");
+		return (FALSE);
+	}
 	types =	ft_count_types(game, 'P');
-	if (types < 1 && types > 1)
+	if (types < 1 || types > 1)
+	{
 		ft_error("Error\n Invalid map, please make sure the map passed has at least one player.");
+		return (FALSE);
+	}
 	types =	ft_count_types(game, 'E');
-	if (types < 1 && types > 1)
-		ft_error("Error\n Invalid map, please make sure the map passed has at least one exit.");
-	return ;
+	if (types < 1 || types > 1)
+	{
+		ft_error("Error\n Invalid map, please make sure the passed map has at least one exit and only one.");
+		return (FALSE);
+	}
+	return (TRUE);
 }

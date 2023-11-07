@@ -1,6 +1,6 @@
 # tool macros
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra
 
 # path macros
 OBJ_PATH = obj
@@ -28,6 +28,7 @@ FILES = draw_map \
 		handle_error \
 		handle_free \
 		main \
+		flood_fill \
 
 OBJ = $(addprefix $(OBJ_PATH)/, $(addsuffix .o, $(FILES)))
 INCLUDE = -I ./inc -I $(PATH_MLX)/include

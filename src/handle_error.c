@@ -15,5 +15,5 @@
 void	ft_error(char *error)
 {
 	ft_printf("\n%s\n", error);
-	exit(EXIT_FAIL);
+	return ;
 }

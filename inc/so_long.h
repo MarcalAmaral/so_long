@@ -32,6 +32,12 @@ typedef struct s_map {
 	size_t			instances;
 }	t_map;
 
+typedef struct s_player {
+	int		p_x;
+	int		p_y;
+	t_map	*p_position;
+}	t_player;
+
 typedef struct s_game {
 	mlx_t			*mlx;
 	mlx_texture_t	*w_texture;
@@ -49,13 +55,8 @@ typedef struct s_game {
 	int				*arr_map;
 	int				remain_c;
 	int				n_mov;
+	t_player		*player;
 }	t_game;
-
-typedef struct s_player {
-	int		p_x;
-	int		p_y;
-	t_map	*p_position;
-}	t_player;
 
 /*Handle linked list matrix*/
 t_map	*ft_newnode_map(char content);
@@ -100,9 +101,11 @@ void	ft_freegame_unit(t_game *game);
 
 /* Handle errors */
 int	check_args(int argc, char **argv);
+int	ft_validate_types(t_game *game);
 
 /* Validate map*/
-int ft_map_is_rectangle(t_game *game);
-int	ft_validate_tileset(t_game *game);
+int 	ft_map_is_rectangle(t_game *game);
+int		ft_validate_tileset(t_game *game);
+void	validate_map(t_game *game, t_player *player);
 
 #endif

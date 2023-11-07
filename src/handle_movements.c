@@ -37,6 +37,7 @@ void	ft_player_move_up(t_game *game, t_player *player)
 	{
 		if (player->p_position->dup_content == 'E')
 		{
+			validate_map(game, player);
 			ft_freegame(game);
 			exit(0);
 		}
@@ -60,6 +61,7 @@ void	ft_player_move_down(t_game *game, t_player *player)
 	{
 		if (player->p_position->dup_content == 'E')
 		{
+			validate_map(game, player);
 			ft_freegame(game);
 			exit(0);
 		}
@@ -83,6 +85,7 @@ void	ft_player_move_left(t_game *game, t_player *player)
 	{
 		if (player->p_position->dup_content == 'E')
 		{
+			validate_map(game, player);
 			ft_freegame(game);
 			exit(0);
 		}
@@ -106,6 +109,7 @@ void	ft_player_move_right(t_game *game, t_player *player)
 	{
 		if (player->p_position->dup_content == 'E')
 		{
+			validate_map(game, player);
 			ft_freegame(game);
 			exit(0);
 		}

@@ -53,10 +53,12 @@ void    ft_freegame(t_game *game)
 {
     ft_freeimg(game);
     ft_freetextures(game);
+	mlx_close_window(game->mlx);
     mlx_terminate(game->mlx);
     ft_free_map(game->map);
     free(game->map);
 	free(game->arr_map);
+	exit (0);
 }
 
 void	ft_freegame_unit(t_game *game)
@@ -64,4 +66,5 @@ void	ft_freegame_unit(t_game *game)
 	ft_free_map(game->map);
     free(game->map);
 	free(game->arr_map);
+	exit (0);
 }
