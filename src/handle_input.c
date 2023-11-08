@@ -42,10 +42,7 @@ void	ft_hook_close_window(void *param)
 
 	game = (t_game *) param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-	{
-		validate_map(game, game->player);
 		ft_freegame(game);
-	}
 }
 
 void	ft_hook_player_movement(mlx_key_data_t keydata, void *param)
@@ -55,7 +52,6 @@ void	ft_hook_player_movement(mlx_key_data_t keydata, void *param)
 
 	game = (t_game *) param;
 	player = (t_player *) ft_calloc(1, sizeof(t_player *));
-	game->player = player;
 	p_position(game, player);
 	if (((keydata.key == MLX_KEY_W) || (keydata.key == MLX_KEY_UP))
 		&& keydata.action == MLX_PRESS)

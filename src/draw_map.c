@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:21:19 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/11/05 22:28:16 by marvin           ###   ########.fr       */
+/*   Updated: 2023/11/07 21:49:20 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,15 @@ void	ft_draw_ground(t_game *game)
 
 	x = 0;
 	y = 0;
-	while (x < game->arr_map[0])
+	while (y < game->arr_map[1])
 	{
-		while (y < game->arr_map[1])
+		while (x < game->arr_map[0])
 		{
-			mlx_image_to_window(game->mlx, game->bd_img, \
-			x * SIZE_IMG, y * SIZE_IMG);
-			y++;
+			mlx_image_to_window(game->mlx, game->bd_img, y * SIZE_IMG, x * SIZE_IMG);
+			x++;
 		}
-		y = 0;
-		x++;
+		y++;
+		x = 0;
 	}
 }
 
@@ -38,7 +37,8 @@ void	ft_while_y(t_game *game, mlx_image_t *img, char type, int *xy)
 	{
 		if (game->temp->content == type)
 		{
-			mlx_image_to_window(game->mlx, img,  xy[0] * SIZE_IMG, xy[1] * SIZE_IMG);
+			mlx_image_to_window(game->mlx, img, xy[1] \
+			* SIZE_IMG, xy[0] * SIZE_IMG);
 			game->temp->instances = xy[2];
 			xy[2]++;
 		}

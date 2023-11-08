@@ -96,15 +96,15 @@ void	ft_collect(t_game *game, t_map *node);
 
 /*Handle free*/
 void	ft_error(char *error);
-void    ft_freegame(t_game *game);
+void	ft_freegame(t_game *game);
 void	ft_freegame_unit(t_game *game);
 
 /* Handle errors */
-int	check_args(int argc, char **argv);
-int	ft_validate_types(t_game *game);
+int		check_args(int argc, char **argv);
+int		ft_validate_types(t_game *game);
 
 /* Validate map*/
-int 	ft_map_is_rectangle(t_game *game);
+int		ft_map_is_rectangle(t_game *game);
 int		ft_validate_tileset(t_game *game);
 void	validate_map(t_game *game, t_player *player);
 

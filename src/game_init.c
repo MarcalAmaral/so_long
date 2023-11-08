@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:24:54 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/11/06 19:28:17 by marvin           ###   ########.fr       */
+/*   Updated: 2023/11/07 18:45:59 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	ft_count_elem(t_game *game, char type)
 
 int	ft_map_to_window(t_game *game)
 {
-	if (ft_map_is_rectangle(game) && ft_validate_tileset(game) && ft_validate_types(game))
+	if (ft_map_is_rectangle(game) && ft_validate_tileset(game) \
+	&& ft_validate_types(game))
 	{
 		game->mlx = mlx_init(1280, 720, "So_long", 1);
 		if (!game->mlx)
@@ -51,7 +52,7 @@ int	ft_map_to_window(t_game *game)
 			draw_map(game);
 		else
 			ft_error("Error\n Fail to construct map.\n");
-		return(TRUE);
+		return (TRUE);
 	}
 	else
 		return (FALSE);

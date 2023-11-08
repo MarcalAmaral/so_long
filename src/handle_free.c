@@ -31,32 +31,32 @@ void	ft_free_map(t_map **head)
 	return ;
 }
 
-void    ft_freeimg(t_game *game)
+void	ft_freeimg(t_game *game)
 {
-    mlx_delete_image(game->mlx, game->bd_img);
+	mlx_delete_image(game->mlx, game->bd_img);
 	mlx_delete_image(game->mlx, game->w_img);
 	mlx_delete_image(game->mlx, game->p_img);
 	mlx_delete_image(game->mlx, game->e_img);
 	mlx_delete_image(game->mlx, game->c_img);
 }
 
-void    ft_freetextures(t_game *game)
+void	ft_freetextures(t_game *game)
 {
-    mlx_delete_texture(game->bd_texture);
+	mlx_delete_texture(game->bd_texture);
 	mlx_delete_texture(game->w_texture);
 	mlx_delete_texture(game->p_texture);
 	mlx_delete_texture(game->e_texture);
 	mlx_delete_texture(game->c_texture);
 }
 
-void    ft_freegame(t_game *game)
+void	ft_freegame(t_game *game)
 {
-    ft_freeimg(game);
-    ft_freetextures(game);
+	ft_freeimg(game);
+	ft_freetextures(game);
 	mlx_close_window(game->mlx);
-    mlx_terminate(game->mlx);
-    ft_free_map(game->map);
-    free(game->map);
+	mlx_terminate(game->mlx);
+	ft_free_map(game->map);
+	free(game->map);
 	free(game->arr_map);
 	exit (0);
 }
@@ -64,7 +64,7 @@ void    ft_freegame(t_game *game)
 void	ft_freegame_unit(t_game *game)
 {
 	ft_free_map(game->map);
-    free(game->map);
+	free(game->map);
 	free(game->arr_map);
 	exit (0);
 }
