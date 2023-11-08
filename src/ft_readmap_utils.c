@@ -96,7 +96,11 @@ int	*ft_mapsize(t_map **map)
 	arr[1] = 0;
 	temp = *map;
 	while (arr[1]++, temp->next)
+	{
+		if (temp->next == NULL)
+			break;
 		temp = temp->next;
+	}
 	temp = *map;
 	arr[0] = 0;
 	while (arr[0]++, temp->down)

@@ -3,45 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 19:15:29 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/11/07 19:27:26 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/11/08 15:04:47 by marvin            #+#    #+#             */
+/*   Updated: 2023/11/08 15:48:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/so_long.h"
 
-void	ft_draw_ground(mlx_t *mlx, mlx_image_t *img)
+void	lenght_line(t_map **head)
 {
-	int		x;
-	int		y;
+	t_map 	*node;
+	int		lenght;
+	int		lenght_prev_line;
 
-	x = 0;
-	y = 0;
-	while (y < 5)
+	node = *head;
+	lenght = 0;
+	lenght_prev_line = 0;
+	while (node)
 	{
-		while (x < 10)
+		if (node->next == NULL)
 		{
-			mlx_image_to_window(mlx, img, x * 32, y * 32);
-			x++;
+			if (lenght_prev_line == 0)
+				lenght_prev_line = lenght;
+			if (lenght_prev_line != lenght)
+			{
+				ft_printf("ERROR\n -This map is not rectangular, please, input a rectangle map.\n");
+				break ;
+			}
+			node = ft_lstfirst_map(node);
+			if (node->down != NULL)
+				node = node->down;
+			else	
+				return ;
+			lenght = 0;
 		}
-		y++;
-		x = 0;
+		lenght++;
+		node = node->next;
 	}
+	return ;
+}
+
+void	ft_map(t_game *game, char *path)
+{
+	int		fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd <= 0)
+		ft_printf("Error\n Check that the path to the file is correct.\n");
+	game->map = (t_map **) ft_calloc(1, sizeof(t_map **));
+	ft_readmap(game->map, fd);
+	game->arr_map = ft_mapsize(game->map);
+	ft_append_down_up_map(game->map, game->arr_map);
+	return ;
 }
 
 int	main(void)
 {
-	mlx_t			*mlx;
-	mlx_texture_t	*bd_texture;
-	mlx_image_t		*bd_img;
+	t_game game;
 
-	mlx = mlx_init(1280, 720, "So_long", 1);
-	bd_texture = mlx_load_png("textures/0/ground.png");
-	bd_img = mlx_texture_to_image(mlx, bd_texture);
-	mlx_resize_image(bd_img, 32, 32);
-	ft_draw_ground(mlx, bd_img);
-	mlx_loop(mlx);
+	ft_bzero(&game, sizeof(game));
+	ft_map(&game, "./maps/map_bigger.ber");
+	lenght_line(game.map);
 	return (0);
 }

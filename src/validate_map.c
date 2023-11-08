@@ -15,14 +15,11 @@
 int ft_map_is_rectangle(t_game *game)
 {
 	if (game->arr_map[0] != game->arr_map[1])
-		return (TRUE);
+		return (FALSE);
 	else
 	{
-		ft_free_map(game->map);
-		free(game->map);
-		free(game->arr_map);
 		ft_error("ERROR\n Map is not retangular, please input a retangular map.\n");
-		return (FALSE);
+		return (TRUE);
 	}
 }
 
@@ -72,7 +69,7 @@ int     ft_validate_tileset(t_game *game)
 			if (game->temp->content != 'C' && game->temp->content != 'P' && game->temp->content != '0' && game->temp->content != 'E' && game->temp->content != '1')
 			{
 				ft_printf("Error\n Invalid map, an invalid character (%c) was found inserted in the map at position (%d, %d)\n", game->temp->content, x+1, y+1);
-				return (FALSE);
+				return (TRUE);
 			}
 			if (game->temp->next == NULL)
 				break;
@@ -84,7 +81,7 @@ int     ft_validate_tileset(t_game *game)
 		y = 0;
 		x++;
 	}
-	return (TRUE);
+	return (FALSE);
 }    
 
 int    ft_validate_types(t_game *game)
@@ -95,19 +92,28 @@ int    ft_validate_types(t_game *game)
 	if (types < 1)
 	{
 		ft_error("Error\n Invalid map, please make sure the map passed has at least one collectible.");
-		return (FALSE);
+		return (TRUE);
 	}
 	types =	ft_count_types(game, 'P');
 	if (types < 1 || types > 1)
 	{
 		ft_error("Error\n Invalid map, please make sure the map passed has at least one player.");
-		return (FALSE);
+		return (TRUE);
 	}
 	types =	ft_count_types(game, 'E');
 	if (types < 1 || types > 1)
 	{
 		ft_error("Error\n Invalid map, please make sure the passed map has at least one exit and only one.");
-		return (FALSE);
+		return (TRUE);
 	}
-	return (TRUE);
+	return (FALSE);
+}
+
+int	validate_map(t_game *game)
+{
+	
+	if (!ft_map_is_rectangle(game) && !ft_validate_tileset(game) && !ft_validate_types(game))
+		return (1);
+	else
+		return (0);
 }

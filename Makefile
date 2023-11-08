@@ -29,6 +29,7 @@ FILES = draw_map \
 		handle_free \
 		main \
 		flood_fill \
+		print_map
 
 OBJ = $(addprefix $(OBJ_PATH)/, $(addsuffix .o, $(FILES)))
 INCLUDE = -I ./inc -I $(PATH_MLX)/include

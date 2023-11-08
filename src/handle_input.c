@@ -14,6 +14,8 @@
 
 void	p_position(t_game *game, t_player *player)
 {
+	player->p_x = 0;
+	player->p_y = 0;
 	player->p_position = *(game->map);
 	while (player->p_x < game->arr_map[0])
 	{
@@ -42,28 +44,30 @@ void	ft_hook_close_window(void *param)
 
 	game = (t_game *) param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+	{
+		ft_print_map(game);
 		ft_freegame(game);
+	}	
 }
 
 void	ft_hook_player_movement(mlx_key_data_t keydata, void *param)
 {
 	t_game		*game;
-	t_player	*player;
 
 	game = (t_game *) param;
-	player = (t_player *) ft_calloc(1, sizeof(t_player *));
-	p_position(game, player);
+	p_position(game, game->player);
+	ft_printf("values in the ft_hook_player_movement x = %d	y = %d\n", game->player->p_x, game->player->p_y);
 	if (((keydata.key == MLX_KEY_W) || (keydata.key == MLX_KEY_UP))
 		&& keydata.action == MLX_PRESS)
-		ft_player_move_up(game, player);
+		ft_player_move_up(game);
 	if (((keydata.key == MLX_KEY_S) || (keydata.key == MLX_KEY_DOWN))
 		&& keydata.action == MLX_PRESS)
-		ft_player_move_down(game, player);
+		ft_player_move_down(game);
 	if (((keydata.key == MLX_KEY_A) || (keydata.key == MLX_KEY_LEFT))
 		&& keydata.action == MLX_PRESS)
-		ft_player_move_left(game, player);
+		ft_player_move_left(game);
 	if (((keydata.key == MLX_KEY_D) || (keydata.key == MLX_KEY_RIGHT))
 		&& keydata.action == MLX_PRESS)
-		ft_player_move_right(game, player);
+		ft_player_move_right(game);
 	return ;
 }

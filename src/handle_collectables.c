@@ -18,6 +18,7 @@ void	ft_collect(t_game *game, t_map *node)
 	{
 		game->c_img->instances[node->instances].enabled = 0;
 		game->remain_c -= 1;
+		ft_printf("remain c = %d \n", game->remain_c);
 	}
 	if (game->remain_c <= 0)
 		game->e_img->instances[0].enabled = 1;

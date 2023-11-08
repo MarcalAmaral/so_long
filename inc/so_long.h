@@ -83,11 +83,11 @@ int		game_init(char *path);
 /* Player Movements */
 void	ft_hook_player_movement(mlx_key_data_t keydata, void *param);
 void	ft_hook_close_window(void *param);
-void	ft_player_move_up(t_game *game, t_player *player);
-void	ft_player_move_down(t_game *game, t_player *player);
-void	ft_player_move_left(t_game *game, t_player *player);
-void	ft_player_move_right(t_game *game, t_player *player);
-void	update_player_movement(t_game *game, t_player *player);
+void	ft_player_move_up(t_game *game);
+void	ft_player_move_down(t_game *game);
+void	ft_player_move_left(t_game *game);
+void	ft_player_move_right(t_game *game);
+void	update_player_movement(t_game *game);
 int		ft_create_new_player_image(t_game *game);
 void	p_position(t_game *game, t_player *player);
 
@@ -106,6 +106,9 @@ int		ft_validate_types(t_game *game);
 /* Validate map*/
 int		ft_map_is_rectangle(t_game *game);
 int		ft_validate_tileset(t_game *game);
-void	validate_map(t_game *game, t_player *player);
+int		validate_map(t_game *game);
+void	ft_print_map(t_game *game);
+void	ft_print_map_content(t_game *game);
+int		flood_fill_map(t_game *game);
 
 #endif

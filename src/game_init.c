@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:24:54 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/11/07 18:45:59 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/11/08 17:28:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,11 @@ void	ft_count_elem(t_game *game, char type)
 
 int	ft_map_to_window(t_game *game)
 {
-	if (ft_map_is_rectangle(game) && ft_validate_tileset(game) \
-	&& ft_validate_types(game))
+	if (validate_map(game))
 	{
-		game->mlx = mlx_init(1280, 720, "So_long", 1);
+		//flood_fill_map(game);
+		ft_count_elem(game, 'C');
+		game->mlx = mlx_init(800, 600, "So_long", 1);
 		if (!game->mlx)
 			ft_error("Error\n Fail to init the window.\n");
 		if (map_construct(game))
@@ -74,11 +75,17 @@ void	ft_map(t_game *game, char *path)
 
 int	game_init(char *path)
 {
-	t_game	game;
+	t_game		game;
+	t_player 	player;
 
 	ft_bzero(&game, sizeof(t_game));
+	ft_bzero(&player, sizeof(t_player));
+	game.player = &player;
 	ft_map(&game, path);
-	ft_count_elem(&game, 'C');
+	ft_printf("MAPA CONTENT\n");
+	ft_print_map_content(&game);
+	ft_printf("\nMAPA DUP_CONTENT\n");
+	ft_print_map(&game);
 	if (ft_map_to_window(&game))
 	{
 		mlx_loop_hook(game.mlx, &ft_hook_close_window, &game);
