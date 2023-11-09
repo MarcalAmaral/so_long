@@ -31,12 +31,12 @@ void	ft_player_move_up(t_game *game)
 		game->player->p_position->content = '0';
 		game->player->p_position->up->content = 'P';
 		game->player->p_position = game->player->p_position->up;
-		ft_printf("x = %d	y = %d", game->player->p_x, game->player->p_y);
 		update_player_movement(game);
 	}
 	if (game->remain_c <= 0 && game->e_img->instances[0].enabled == 1)
 	{
-		if ((game->e_img->instances[0].x / SIZE_IMG == game->player->p_y) && (game->e_img->instances[0].y / SIZE_IMG == game->player->p_x))
+		if ((game->e_img->instances[0].x / SIZE_IMG == game->player->p_y)
+			&& (game->e_img->instances[0].y / SIZE_IMG == game->player->p_x))
 		{
 			ft_print_map(game);
 			ft_freegame(game);
@@ -56,12 +56,12 @@ void	ft_player_move_down(t_game *game)
 		game->player->p_position->content = '0';
 		game->player->p_position->down->content = 'P';
 		game->player->p_position = game->player->p_position->down;
-		ft_printf("x = %d	y = %d", game->player->p_x, game->player->p_y);
 		update_player_movement(game);
 	}
 	if (game->remain_c <= 0 && game->e_img->instances[0].enabled == 1)
 	{
-		if ((game->e_img->instances[0].x / SIZE_IMG == game->player->p_y) && (game->e_img->instances[0].y / SIZE_IMG == game->player->p_x))
+		if ((game->e_img->instances[0].x / SIZE_IMG == game->player->p_y)
+			&& (game->e_img->instances[0].y / SIZE_IMG == game->player->p_x))
 		{
 			ft_print_map(game);
 			ft_freegame(game);
@@ -81,12 +81,12 @@ void	ft_player_move_left(t_game *game)
 		game->player->p_position->content = '0';
 		game->player->p_position->prev->content = 'P';
 		game->player->p_position = game->player->p_position->prev;
-		ft_printf("x = %d	y = %d", game->player->p_x, game->player->p_y);
 		update_player_movement(game);
 	}
 	if (game->remain_c <= 0 && game->e_img->instances[0].enabled == 1)
 	{
-		if ((game->e_img->instances[0].x / SIZE_IMG == game->player->p_y) && (game->e_img->instances[0].y / SIZE_IMG == game->player->p_x))
+		if ((game->e_img->instances[0].x / SIZE_IMG == game->player->p_y)
+			&& (game->e_img->instances[0].y / SIZE_IMG == game->player->p_x))
 		{
 			ft_print_map(game);
 			ft_freegame(game);
@@ -106,12 +106,12 @@ void	ft_player_move_right(t_game *game)
 		game->player->p_position->content = '0';
 		game->player->p_position->next->content = 'P';
 		game->player->p_position = game->player->p_position->next;
-		ft_printf("x = %d	y = %d", game->player->p_x, game->player->p_y);
 		update_player_movement(game);
 	}
 	if (game->remain_c <= 0 && game->e_img->instances[0].enabled == 1)
 	{
-		if ((game->e_img->instances[0].x / SIZE_IMG == game->player->p_y) && (game->e_img->instances[0].y / SIZE_IMG == game->player->p_x))
+		if ((game->e_img->instances[0].x / SIZE_IMG == game->player->p_y)
+			&& (game->e_img->instances[0].y / SIZE_IMG == game->player->p_x))
 		{
 			ft_print_map(game);
 			ft_freegame(game);

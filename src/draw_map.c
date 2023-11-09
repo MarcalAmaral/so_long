@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:21:19 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/11/08 10:14:30 by marvin           ###   ########.fr       */
+/*   Updated: 2023/11/09 14:51:48 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	ft_draw_ground(t_game *game)
 	{
 		while (x < game->arr_map[0])
 		{
-			mlx_image_to_window(game->mlx, game->bd_img, y * SIZE_IMG, x * SIZE_IMG);
+			mlx_image_to_window(game->mlx, game->bd_img,
+				y * SIZE_IMG, x * SIZE_IMG);
 			x++;
 		}
 		y++;

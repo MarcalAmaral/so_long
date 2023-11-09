@@ -56,7 +56,6 @@ void	ft_hook_player_movement(mlx_key_data_t keydata, void *param)
 
 	game = (t_game *) param;
 	p_position(game, game->player);
-	ft_printf("values in the ft_hook_player_movement x = %d	y = %d\n", game->player->p_x, game->player->p_y);
 	if (((keydata.key == MLX_KEY_W) || (keydata.key == MLX_KEY_UP))
 		&& keydata.action == MLX_PRESS)
 		ft_player_move_up(game);

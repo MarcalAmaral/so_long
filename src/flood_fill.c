@@ -12,10 +12,10 @@
 
 #include "../inc/so_long.h"
 
-int ft_flood_fill(t_game *game, t_map *node)
+int	ft_flood_fill(t_game *game, t_map *node)
 {
-
-	if (node->next == NULL || node->prev == NULL || node->down == NULL || node->up == NULL || node->dup_content == '1')
+	if (node->next == NULL || node->prev == NULL
+		|| node->down == NULL || node->up == NULL || node->dup_content == '1')
 		return (FALSE);
 	node->dup_content = '1';
 	if (ft_flood_fill(game, node->next) || ft_flood_fill(game, node->prev) \
@@ -38,7 +38,8 @@ int	ft_valid_route(t_game *game)
 	{
 		while (y < game->arr_map[1])
 		{
-			if (game->temp->dup_content != '1' && game->temp->dup_content != '0')
+			if (game->temp->dup_content != '1'
+				&& game->temp->dup_content != '0')
 				return (FALSE);
 			if (game->temp->next == NULL)
 				break ;
@@ -55,9 +56,9 @@ int	ft_valid_route(t_game *game)
 
 int	ft_valid_edges_top_buttom(t_game *game)
 {
-	t_map *node;
-	int	x;
-	int	y;
+	t_map	*node;
+	int		x;
+	int		y;
 
 	x = 0;
 	y = 0;
@@ -83,9 +84,9 @@ int	ft_valid_edges_top_buttom(t_game *game)
 
 int	ft_valid_edges(t_game *game)
 {
-	t_map *border_left;
-	t_map *border_right;
-	int	x;
+	t_map	*border_left;
+	t_map	*border_right;
+	int		x;
 
 	x = 0;
 	border_left = *(game->map);
@@ -110,11 +111,10 @@ int	flood_fill_map(t_game *game)
 {
 	p_position(game, game->player);
 	ft_flood_fill(game, game->player->p_position);
-	ft_printf("\nAfter flood fill map\n");
-	ft_print_map(game);
 	if (!ft_valid_route(game) || !ft_valid_edges(game))
 	{		
-		ft_printf("ERROR\n - Check if the map has a valid route and is surrounded by walls..\n");
+		ft_printf("ERROR\n-Check if");
+		ft_printf(" the map has a valid route and is surrounded by walls.\n");
 		return (FALSE);
 	}
 	else

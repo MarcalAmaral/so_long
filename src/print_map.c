@@ -45,7 +45,6 @@ void	ft_print_map(t_game *game)
 	}
 }
 
-
 void	ft_print_map_y_content(t_game *game, int *xy)
 {
 	while (xy[1] < game->arr_map[1])

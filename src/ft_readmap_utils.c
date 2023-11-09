@@ -50,11 +50,8 @@ void	ft_append_prev_map(t_map **map)
 
 	temp = *map;
 	i = 0;
-	if (i == 0)
-	{
+	if (i++ == 0)
 		temp->prev = NULL;
-		i++;
-	}
 	temp = temp->next;
 	j = -1;
 	while (temp)
@@ -98,7 +95,7 @@ int	*ft_mapsize(t_map **map)
 	while (arr[1]++, temp->next)
 	{
 		if (temp->next == NULL)
-			break;
+			break ;
 		temp = temp->next;
 	}
 	temp = *map;
