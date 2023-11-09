@@ -12,15 +12,47 @@
 
 #include "../inc/so_long.h"
 
+int	lenght_line(t_map **head);
+
 int ft_map_is_rectangle(t_game *game)
 {
-	if (game->arr_map[0] != game->arr_map[1])
+	if ((game->arr_map[0] != game->arr_map[1]) && lenght_line(game->map))
 		return (FALSE);
 	else
 	{
 		ft_error("ERROR\n Map is not retangular, please input a retangular map.\n");
 		return (TRUE);
 	}
+}
+
+int	lenght_line(t_map **head)
+{
+	t_map 	*node;
+	int		lenght;
+	int		lenght_prev_line;
+
+	node = *head;
+	lenght = 0;
+	lenght_prev_line = 0;
+	while (node)
+	{
+		if (node->next == NULL)
+		{
+			if (lenght_prev_line == 0)
+				lenght_prev_line = lenght;
+			if (lenght_prev_line != lenght)
+				break ;
+			node = ft_lstfirst_map(node);
+			if (node->down != NULL)
+				node = node->down;
+			else	
+				return (TRUE);
+			lenght = 0;
+		}
+		lenght++;
+		node = node->next;
+	}
+	return (FALSE);
 }
 
 int     ft_count_types(t_game *game, char type)
@@ -113,7 +145,7 @@ int	validate_map(t_game *game)
 {
 	
 	if (!ft_map_is_rectangle(game) && !ft_validate_tileset(game) && !ft_validate_types(game))
-		return (1);
+		return (TRUE);
 	else
-		return (0);
+		return (FALSE);
 }

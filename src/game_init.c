@@ -6,46 +6,18 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:24:54 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/11/08 17:28:37 by marvin           ###   ########.fr       */
+/*   Updated: 2023/11/08 22:02:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-void	ft_count_elem(t_game *game, char type)
-{
-	int		x;
-	int		y;
-
-	x = 0;
-	y = 0;
-	game->temp = *(game->map);
-	while (x < game->arr_map[0])
-	{
-		while (y < game->arr_map[1])
-		{
-			if (game->temp->content == type)
-				game->remain_c++;
-			if (game->temp->next == NULL)
-			{
-				game->temp = ft_lstfirst_map(game->temp);
-				break ;
-			}
-			game->temp = game->temp->next;
-			y++;
-		}
-		game->temp = game->temp->down;
-		x++;
-		y = 0;
-	}
-}
-
 int	ft_map_to_window(t_game *game)
 {
-	if (validate_map(game))
+	if (validate_map(game) && flood_fill_map(game))
 	{
-		//flood_fill_map(game);
-		ft_count_elem(game, 'C');
+		flood_fill_map(game);
+		game->remain_c = ft_count_types(game, 'C');
 		game->mlx = mlx_init(800, 600, "So_long", 1);
 		if (!game->mlx)
 			ft_error("Error\n Fail to init the window.\n");
@@ -91,6 +63,8 @@ int	game_init(char *path)
 		mlx_loop_hook(game.mlx, &ft_hook_close_window, &game);
 		mlx_key_hook(game.mlx, &ft_hook_player_movement, &game);
 		mlx_loop(game.mlx);
+		ft_print_map(&game);
+		ft_freegame(&game);
 	}
 	else
 		ft_freegame_unit(&game);

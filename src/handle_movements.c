@@ -38,6 +38,7 @@ void	ft_player_move_up(t_game *game)
 	{
 		if ((game->e_img->instances[0].x / SIZE_IMG == game->player->p_y) && (game->e_img->instances[0].y / SIZE_IMG == game->player->p_x))
 		{
+			ft_print_map(game);
 			ft_freegame(game);
 			exit(0);
 		}
@@ -62,6 +63,7 @@ void	ft_player_move_down(t_game *game)
 	{
 		if ((game->e_img->instances[0].x / SIZE_IMG == game->player->p_y) && (game->e_img->instances[0].y / SIZE_IMG == game->player->p_x))
 		{
+			ft_print_map(game);
 			ft_freegame(game);
 			exit(0);
 		}
@@ -86,6 +88,7 @@ void	ft_player_move_left(t_game *game)
 	{
 		if ((game->e_img->instances[0].x / SIZE_IMG == game->player->p_y) && (game->e_img->instances[0].y / SIZE_IMG == game->player->p_x))
 		{
+			ft_print_map(game);
 			ft_freegame(game);
 			exit(0);
 		}
@@ -110,6 +113,7 @@ void	ft_player_move_right(t_game *game)
 	{
 		if ((game->e_img->instances[0].x / SIZE_IMG == game->player->p_y) && (game->e_img->instances[0].y / SIZE_IMG == game->player->p_x))
 		{
+			ft_print_map(game);
 			ft_freegame(game);
 			exit(0);
 		}

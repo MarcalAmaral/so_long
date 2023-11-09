@@ -110,5 +110,6 @@ int		validate_map(t_game *game);
 void	ft_print_map(t_game *game);
 void	ft_print_map_content(t_game *game);
 int		flood_fill_map(t_game *game);
+int     ft_count_types(t_game *game, char type);
 
 #endif
